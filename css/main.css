@@ -1,0 +1,229 @@
+/*
+* Common Setup
+*/
+
+/* font config */
+/*@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic&subset=latin,latin-ext);*/
+
+
+/*
+* Main page style
+*/
+#main-page #left-panel.ui-panel {
+    width: 15em;
+}
+#main-page #left-panel.ui-panel-closed {
+    width: 0;
+}
+#main-page .ui-panel-position-left.ui-panel-display-reveal {
+    left: 0;
+}
+#main-page .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open,
+.ui-panel-dismiss-position-left.ui-panel-dismiss-open {
+    left: 15em;
+    right: -15em;
+}
+#main-page .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, #main-page .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal {
+    left: 0;
+    right: 0;
+    -webkit-transform: translate3d(15em,0,0);
+    -moz-transform: translate3d(15em,0,0);
+    transform: translate3d(15em,0,0);
+}
+
+/*
+* Menu page style - left panel
+*/
+#left-panel .ui-panel-inner > .ui-listview { margin-bottom: 0; }
+#left-panel .ui-panel-inner > .ui-listview:last-child { margin-top: -1px; }
+#left-panel .ui-collapsible-set { margin: 0; }
+#left-panel .ui-li-divider { padding: .7em 40px .7em 15px; font-size: 16px; }
+
+/* Reveal menu shadow on top of the list items */
+#main-page .ui-panel-display-reveal {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+#main-page .ui-panel-content-wrap-position-left {
+    -webkit-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+    -moz-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+    box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+}
+
+#main-page .ui-content {
+    padding-top: 50px;
+}
+#main-page .ui-body-c {
+    font-family: 'Ubuntu','microsoft yahei', sans-serif;
+    /*padding-top: 35px;*/
+}
+
+/* Styling of the page contents */
+.article p {
+    margin: 0 0 1em;
+    line-height: 1.5;
+}
+.article p img {
+    max-width: 100%;
+}
+.article p:first-child {
+    text-align: center;
+}
+.article small {
+    display: block;
+    font-size: 75%;
+    color: #c0c0c0;
+}
+.article p:last-child {
+    text-align: right;
+}
+.article a.ui-btn {
+    margin-right: 2em;
+    -webkit-border-radius: .4em;
+    border-radius: .4em;
+}
+@media all and (min-width:769px) {
+    .article {
+        max-width: 994px;
+        margin: 0 auto;
+        padding-top: 4em;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        -webkit-column-gap: 2em;
+        -moz-column-gap: 2em;
+        column-gap: 2em;
+    }
+    /* Fix for issue with buttons and form elements
+    if CSS columns are used on a page with a panel. */
+    .article a.ui-btn {
+        -webkit-transform: translate3d(0,0,0);
+    }
+}
+
+
+/*
+* User Login
+*/
+.form-login {
+  max-width: 400px;
+  padding: 3px 29px 29px;
+  margin: 9px auto 9px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 9px;
+     -moz-border-radius: 9px;
+          border-radius: 9px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+
+/*
+* Client List
+*/
+
+/* These apply across all breakpoints because they are outside of a media query */
+/* Make the labels light gray all caps across the board */
+.client-list thead th,
+.client-list tbody th .ui-table-cell-label,
+.client-list tbody td .ui-table-cell-label {
+    text-transform: uppercase;
+    font-size: .7em;
+    color: rgba(0,0,0,0.5);
+    font-weight: normal;
+}
+/* White bg, large blue text for rank and title */
+.client-list tbody th {
+    font-size: 1.2em;
+    background-color: #fff;
+    color: #77bbff;
+    text-align: center;
+}
+/*  Add a bit of extra left padding for the title */
+.client-list tbody td.title {
+    padding-left: .8em;
+}
+/*  Custom stacked styles for mobile sizes */
+/*  Use a max-width media query so we don't have to undo these styles */
+@media (max-width: 40em) {
+    /*  Negate the margin between sections */
+    .client-list tbody th {
+        margin-top: 0;
+        text-align: left;
+    }
+    /*  White bg, large blue text for rank and title */
+    .client-list tbody th,
+    .client-list tbody td.title {
+        display: block;
+        font-size: 1.2em;
+        line-height: 110%;
+        padding: .5em .5em;
+        background-color: #fff;
+        color: #77bbff;
+        -moz-box-shadow: 0 1px 6px rgba(0,0,0,.1);
+        -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.1);
+        box-shadow: 0 1px 6px rgba(0,0,0,.1);
+    }
+    /*  Hide labels for rank and title */
+    .client-list tbody th .ui-table-cell-label,
+    .client-list tbody td.title .ui-table-cell-label {
+        display: none;
+    }
+    /*  Position the title next to the rank, pad to the left */
+    .client-list tbody td.title {
+        margin-top: -2.1em;
+        padding-left: 2.2em;
+        border-bottom: 1px solid rgba(0,0,0,.15);
+    }
+    /*  Make the data bold */
+    .client-list th,
+    .client-list td {
+        font-weight: bold;
+    }
+    /* Make the label elements a percentage width */
+    .client-list td .ui-table-cell-label,
+    .client-list th .ui-table-cell-label {
+        min-width: 20%;
+    }
+}
+/* Media query to show as a standard table at wider widths */
+@media ( min-width: 40em ) {
+    /* Show the table header rows */
+    .client-list td,
+    .client-list th,
+    .client-list tbody th,
+    .client-list tbody td,
+    .client-list thead td,
+    .client-list thead th {
+        display: table-cell;
+        margin: 0;
+    }
+    /* Hide the labels in each cell */
+    .client-list td .ui-table-cell-label,
+    .client-list th .ui-table-cell-label {
+        display: none;
+    }
+}
+/* Hack to make IE9 and WP7.5 treat cells like block level elements */
+/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
+@media ( max-width: 40em ) {
+    .client-list td,
+    .client-list th {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        float: left;
+        clear: left;
+    }
+}
+
+#main-page .ui-table-columntoggle-btn {
+    margin-bottom: -50px;
+}
+#operate {
+    margin: 20px auto;
+}

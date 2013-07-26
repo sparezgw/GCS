@@ -1,0 +1,59 @@
+    <table class="ui-table table-stroke">
+      <caption><h2>客户详细信息</h2></caption>
+      <tbody>
+        <tr>
+        	<th></th>
+        	<td></td>
+        	<th>序号</th>
+        	<td>{{ @person.pID }}</td>
+        	<th>来源</th>
+        	<td>{{ @person.from }}</td>
+        </tr>
+        <tr>
+        	<th>姓名</th>
+        	<td>{{ @person.name }}</td>
+        	<th>性别</th>
+        	<td><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
+        	<th>生日</th>
+        	<td>{{ @person.birthday }}</td>
+        </tr>
+        <tr>
+        	<th>手机</th>
+        	<td>{{ @person.mobile }}</td>
+        	<th>邮箱</th>
+        	<td>{{ @person.email }}</td>
+        	<th>办公</th>
+        	<td>{{ @person.workphone }}</td>
+        </tr>
+        <tr>
+        	<th>公司</th>
+        	<td>{{ @person.company }}</td>
+        	<th>职位</th>
+        	<td>{{ @person.position }}</td>
+        	<th>年收入</th>
+        	<td>{{ @person.income }}</td>
+        </tr>
+        <tr>
+        	<th>地址</th>
+        	<td colspan="5">{{ @person.address }}</td>
+        </tr>
+
+        {{* <tr>
+        	<th rowspan="2" colspan="2">家庭情况</th>
+        	<th>配偶姓名</th>
+        	<td>xxx</td>
+        	<th>生日</th>
+        	<td>1984-09-09</td>
+        </tr>
+        <tr>
+        	<th>子女姓名</th>
+        	<td>xxx</td>
+        	<th>生日</th>
+        	<td>1984-09-09</td>
+        </tr>*}}
+      </tbody>
+    </table>
+    <div id="operate">
+		<a href="/client/list" data-icon="back" data-role="button" data-inline="true" data-rel="back">返回列表</a>
+		<input type="button" id="log_out" data-theme="b" data-inline="true" value="del">
+    </div>

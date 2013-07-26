@@ -1,0 +1,36 @@
+    <table data-role="table" id="client-table" data-mode="reflow" class="client-list table-stroke">
+      <caption><h2>客户列表</h2></caption>
+      <thead>
+        <tr>
+          <th data-priority="1">序号</th>
+          <th>姓名</th>
+          <th data-priority="2">性别</th>
+          <th data-priority="3">生日</th>
+          <th data-priority="4">手机</th>
+          <th data-priority="5">eMail</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <repeat group="{{ @people }}" value="{{ @person }}">
+        <tr>
+          <th><check if="{{ (int)@person.parentID }}">└</check> {{ @person.pID }}</th>
+          <td class="title"><a href="/client/{{ @person.pID }}">{{ @person.name }}</a></td>
+          <td><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
+          <td>{{ @person.birthday }}</td>
+          <td>{{ @person.mobile }}</td>
+          <td>{{ @person.email }}</td>
+          <td>
+            <a href="/client/{{ @person.pID }}" class="ui-icon-alt" data-role="button" data-icon="bars" data-iconpos="notext" data-inline="true">详情</a>
+            <a href="#" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
+            <a href="#" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
+            <a href="#" data-role="button" class="ui-icon-alt" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">卡片</a>
+
+            {{* <a href="/client/{{ @person.pID }}" data-role="button" data-mini="true" data-inline="true">详细信息</a><check if="{{ !(int)@person.parentID }}">
+            <a href="#" data-role="button" data-mini="true" data-inline="true">查看卡片</a>
+            </check> *}}
+          </td>
+        </tr>
+        </repeat>
+      </tbody>
+    </table>
