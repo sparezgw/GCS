@@ -2,15 +2,11 @@
 /**
 * 
 */
-class Home {
+class Home extends Controller {
 	
 	function __construct() {
 	
-		$f3=Base::instance();
-	}
-
-	function afterroute() {
-		echo Template::instance()->render('layout.html');
+		parent::__construct(false);
 	}
 
 	function main($f3) {
@@ -28,7 +24,7 @@ class Home {
 
 	function get($f3) {
 	    $f3->set('url', '/home');
-		$f3->set('pageTitle', 'Index');
+		$f3->set('pageTitle', 'Home');
 		$f3->set('pageContent', 'index.html');
 	}
 

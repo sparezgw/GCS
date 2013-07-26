@@ -227,3 +227,17 @@
 #operate {
     margin: 20px auto;
 }
+
+
+/*
+* Client List
+*/
+.client-add .ui-field-contain > label,
+.client-add legend {
+    font-weight: bold;
+    padding-top: 8px;
+}
+.client-add .ui-field-contain {
+    padding: .4em 15px;
+    margin: 0 auto;
+}

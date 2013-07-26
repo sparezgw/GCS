@@ -13,6 +13,8 @@ class Users extends Controller
 		$this->user = new DB\SQL\Mapper($this->db,'Users');
 	}
 
+	function beforeroute($f3) {}
+
 	function login($f3)
 	{
 		if ($_POST != array()) {

@@ -13,18 +13,15 @@ class Clients extends Controller
 		$this->people = new DB\SQL\Mapper($this->db,'People');
 	}
 
-	function beforeroute($f3) {	
-		if ($f3->get('SESSION.UUID') == "") {
-			$f3->reroute('/user/login');
-		}
+	function all($f3) {
 
-	// 	if ($f3->get('SESSION.lastseen')+$f3->get('expiry')*3600<time())
-	// 		// Session has expired
-	// 		$f3->reroute('/logout');
-	// 	// Update session data
-	// 	$f3->set('SESSION.lastseen',time());
+		$f3->set('pageTitle', 'Client List');
+		$f3->set('pageContent', 'clients/_list.html');
+		$f3->set('people',
+			$this->db->exec('SELECT * FROM People WHERE uID=?', $f3->get('SESSION.UUID'))
+		);
+
 	}
-
 
 	function show($f3,$args) {
 		$p = $this->people;
@@ -44,15 +41,30 @@ class Clients extends Controller
 		$f3->set('pageContent', 'clients/_show.html');
 	}
 
-	
-	function all($f3) {
+	function add($f3) {
 
-		$f3->set('pageTitle', 'Client List');
-		$f3->set('pageContent', 'clients/_list.html');
-		$f3->set('people',
-			$this->db->exec('SELECT * FROM People WHERE uID=?', $f3->get('SESSION.UUID'))
-		);
+		if ($_POST != array()) {
+			$p = $this->people;
+			$p->uID = $f3->get('SESSION.UUID');
+			// $p->parentID = 0;
+			$p->copyFrom('POST');
+			$p->save();
 
+			// $f3->set('pageTitle', 'xxx');
+			// $f3->set('pageContent', 'test.html');
+			$f3->reroute('/client/list');
+
+		} else {
+			
+			// just view the login form.
+			$f3->set('pageTitle', 'Add New Client');
+			$f3->set('pageContent', 'clients/_add.html');
+
+		}
 	}
+
+
+	
+
 }
 

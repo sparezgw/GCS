@@ -25,12 +25,12 @@
 </head>
 
 <body>
-<div data-role="page" id="main-page"<check if="{{ isset(@url) }}"> data-url="{{ @url }}"</check>>
+<div data-role="page" id="main-page" data-title="淘金卡在线系统&copy;中宏保险"<check if="{{ isset(@url) }}"> data-url="{{ @url }}"</check>>
     <div data-role="header" data-position="fixed" data-fullscreen="true" data-theme="c">
         <check if="{{ isset(@SESSION.UUID) }}">
         <a href="#left-panel" data-icon="bars">系统菜单</a>
         </check>
-        <h1>淘金卡在线系统</h1>
+        <h1>淘金卡在线系统&copy;中宏保险</h1>
         <check if="{{ isset(@SESSION.UUID) }}">
         <a href="/user/logout" data-icon="star" class="ui-btn-right">退出</a>
         </check>
