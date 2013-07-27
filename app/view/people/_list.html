@@ -22,8 +22,8 @@
           <td>{{ @person.email }}</td>
           <td>
             <a href="/client/{{ @person.pID }}" class="ui-icon-alt" data-role="button" data-icon="bars" data-iconpos="notext" data-inline="true">详情</a>
-            <a href="#" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
-            <a href="#" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
+            <a href="/client/edit/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
+            <a href="/client/del/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
             <check if="{{ !(int)@person.parentID }}"><a href="#" data-role="button" class="ui-icon-alt" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">卡片</a></check>
           </td>
         </tr>

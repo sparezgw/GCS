@@ -1,0 +1,37 @@
+    <table class="ui-table table-stroke">
+      <caption><h2>个人信息</h2></caption>
+      <tbody>
+        <tr>
+        	<th>姓名</th>
+        	<td>{{ @person.name }}</td>
+        	<th>性别</th>
+        	<td><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
+        	<th>生日</th>
+        	<td>{{ @person.birthday }}</td>
+        </tr>
+        <tr>
+        	<th>手机</th>
+        	<td>{{ @person.mobile }}</td>
+        	<th>邮箱</th>
+        	<td>{{ @person.email }}</td>
+        	<th>办公</th>
+        	<td>{{ @person.workphone }}</td>
+        </tr>
+        <tr>
+        	<th>公司</th>
+        	<td>{{ @person.company }}</td>
+        	<th>职位</th>
+        	<td>{{ @person.position }}</td>
+        	<th>年收入</th>
+        	<td>{{ @person.income }}</td>
+        </tr>
+        <tr>
+        	<th>地址</th>
+        	<td colspan="5">{{ @person.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="operate">
+		<a href="" data-icon="back" data-role="button" data-inline="true" data-rel="back">返回</a>
+        <a href="/self/edit" data-icon="edit" data-role="button" data-inline="true" data-theme="b">编辑</a>
+    </div>

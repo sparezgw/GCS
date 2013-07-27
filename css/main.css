@@ -51,9 +51,6 @@
     box-shadow: -5px 0px 5px rgba(0,0,0,.15);
 }
 
-#main-page .ui-content {
-    padding-top: 50px;
-}
 #main-page .ui-body-c {
     font-family: 'Ubuntu','microsoft yahei', sans-serif;
     /*padding-top: 35px;*/
@@ -230,14 +227,18 @@
 
 
 /*
-* Client List
+* Person edit form
 */
-.client-add .ui-field-contain > label,
-.client-add legend {
+.person-edit .ui-field-contain > label,
+.person-edit legend {
     font-weight: bold;
     padding-top: 8px;
 }
-.client-add .ui-field-contain {
+.person-edit .ui-field-contain {
     padding: .4em 15px;
     margin: 0 auto;
 }
+
+/*
+* Client List
+*/

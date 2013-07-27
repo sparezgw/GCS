@@ -1,5 +1,5 @@
-<form class="" method="post">
-	<div class="client-add ui-grid-b">
+<form class="person-edit" method="post">
+	<div class="ui-grid-b">
 		<h2>新增客户</h2>
 		<div class="ui-block-a">
 			<div data-role="fieldcontain">
@@ -11,7 +11,7 @@
 			<div data-role="fieldcontain">
 			    <fieldset data-role="controlgroup" data-type="horizontal">
 			        <legend>性别:</legend>
-			        <input type="radio" name="gender" id="gender-1" value="1" checked="checked">
+			        <input type="radio" name="gender" id="gender-1" value="1">
 			        <label for="gender-1">男</label>
 			        <input type="radio" name="gender" id="gender-2" value="0">
 			        <label for="gender-2">女</label>
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 	</div><!-- /grid-b -->
-	<div class="client-add ui-grid-a">
+	<div class="person-edit ui-grid-a">
 		<div class="ui-block-a">
 			<div data-role="fieldcontain">
 			    <label for="address">地址:</label>
@@ -72,7 +72,7 @@
 			<div data-role="fieldcontain">
 			    <fieldset data-role="controlgroup" data-type="horizontal">
 			        <legend>来源:</legend>
-			        <input type="radio" name="from" id="from-1" value="0" checked="checked">
+			        <input type="radio" name="from" id="from-1" value="0">
 			        <label for="from-1">缘故</label>
 			        <input type="radio" name="from" id="from-2" value="1">
 			        <label for="from-2">转介绍</label>
@@ -85,5 +85,5 @@
 		</div>
 	</div><!-- /grid-a -->
 	<input type="hidden" name="parentID" value="0" />
-	<button type="submit" data-icon="plus" data-theme="b" data-inline="true">添加</button>
+	<button type="submit" name="add" data-icon="plus" data-theme="b" data-inline="true">添加</button>
 </form>

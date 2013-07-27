@@ -55,5 +55,6 @@
     </table>
     <div id="operate">
 		<a href="/client/list" data-icon="back" data-role="button" data-inline="true" data-rel="back">返回列表</a>
-		<input type="button" data-theme="b" data-inline="true" value="del">
+        <a href="/client/edit/{{ @person.pID }}" data-icon="edit" data-role="button" data-theme="b" data-inline="true">编辑</a>
+		<a href="/client/del/{{ @person.pID }}" data-icon="delete" data-role="button" data-theme="e" data-inline="true">删除</a>
     </div>

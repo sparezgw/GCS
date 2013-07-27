@@ -1,0 +1,74 @@
+<form class="person-edit" method="post">
+	<div class="ui-grid-b">
+		<h2>更新个人信息</h2>
+		<div class="ui-block-a">
+			<div data-role="fieldcontain">
+			    <label for="name">姓名:</label>
+			    <input type="text" name="name" id="name" placeholder="姓名" value="{{ @person.name }}">
+			</div>
+		</div>
+		<div class="ui-block-b">
+			<div data-role="fieldcontain">
+			    <fieldset data-role="controlgroup" data-type="horizontal">
+			        <legend>性别:</legend>
+			        <input type="radio" name="gender" id="gender-1" value="1"<check if="{{ isset(@person.gender)&& @person.gender==1}}"> checked="checked"</check>>
+			        <label for="gender-1">男</label>
+			        <input type="radio" name="gender" id="gender-2" value="0"<check if="{{ isset(@person.gender)&& @person.gender==0}}"> checked="checked"</check>>
+			        <label for="gender-2">女</label>
+			    </fieldset>
+			</div>
+		</div>
+		<div class="ui-block-c">
+			<div data-role="fieldcontain">
+			    <label for="birthday">生日:</label>
+			    <input type="date" name="birthday" id="birthday" value="{{ @person.birthday }}">
+			</div>
+		</div>
+		<div class="ui-block-a">
+			<div data-role="fieldcontain">
+			    <label for="email">邮箱:</label>
+			    <input type="text" name="email" id="email" placeholder="邮箱" value="{{ @person.email }}">
+			</div>
+		</div>
+		<div class="ui-block-b">
+			<div data-role="fieldcontain">
+			    <label for="mobile">手机:</label>
+			    <input type="text" name="mobile" id="mobile" placeholder="手机" value="{{ @person.mobile }}">
+			</div>
+		</div>
+		<div class="ui-block-c">
+			<div data-role="fieldcontain">
+			    <label for="workphone">办公：</label>
+			    <input type="text" name="workphone" id="workphone" placeholder="办公电话" value="{{ @person.workphone }}">
+			</div>
+		</div>
+		<div class="ui-block-a">
+			<div data-role="fieldcontain">
+			    <label for="company">公司:</label>
+			    <input type="text" name="company" id="company" placeholder="公司" value="{{ @person.company }}">
+			</div>
+		</div>
+		<div class="ui-block-b">
+			<div data-role="fieldcontain">
+			    <label for="position">职位:</label>
+			    <input type="text" name="position" id="position" placeholder="职位" value="{{ @person.position }}">
+			</div>
+		</div>
+		<div class="ui-block-c">
+			<div data-role="fieldcontain">
+			    <label for="income">年收入:</label>
+			    <input type="text" name="income" id="income" placeholder="年收入" value="{{ @person.income }}">
+			</div>
+		</div>
+	</div><!-- /grid-b -->
+	<div class="ui-grid-solo">
+		<div class="ui-block-a">
+			<div data-role="fieldcontain">
+			    <label for="address">地址:</label>
+			    <input type="text" name="address" id="address" placeholder="地址" value="{{ @person.address }}">
+			</div>
+		</div>
+	</div><!-- /grid-solo -->
+	<a data-icon="back" data-role="button" data-inline="true" data-rel="back">返回</a>
+	<button type="submit" name="update" data-icon="check" data-theme="b" data-inline="true">更新</button>
+</form>

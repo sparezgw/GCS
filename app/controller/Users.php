@@ -2,22 +2,22 @@
 /**
 * 
 */
-class Users extends Controller
-{
+class Users extends Controller {
+
 	protected
 		$user;
 	
-	function __construct()
-	{
+	function __construct() {
+
 		parent::__construct();
 		$this->user = new DB\SQL\Mapper($this->db,'Users');
 	}
 
 	function beforeroute($f3) {}
 
-	function login($f3)
-	{
-		if ($_POST != array()) {
+	function login($f3) {
+
+		if ($f3->exists('POST.login')) {
 
 			$this->user->load(array('uname=?', $f3->get('POST.username')));
 
@@ -31,8 +31,8 @@ class Users extends Controller
 
 		    else { //both username and password are right, and goto main page.
 
-				$f3->clear('SESSION');
 				$f3->set('SESSION.UUID', $this->user->uID);
+				$f3->set('SESSION.PID', $this->user->pID);
 				$f3->reroute('/home');
 			}
 
@@ -52,12 +52,10 @@ class Users extends Controller
 		
 	}
 
-
 	function logout($f3) {
 	    	
 		$f3->clear('SESSION');
 		$f3->reroute('/user/login');
 	}
-
 
 }
