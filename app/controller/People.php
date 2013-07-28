@@ -83,6 +83,7 @@ class People extends Controller
 			if ($f3->exists('POST.update')) {
 
 				$p->copyFrom('POST');
+				$p->birthday = ($p->birthday!='')?: NULL;
 				$p->save();
 
 				$f3->reroute('/self/show');
@@ -103,6 +104,7 @@ class People extends Controller
 			if ($f3->exists('POST.update')) {
 				
 				$p->copyFrom('POST');
+				$p->birthday = ($p->birthday!='')?: NULL;
 				$p->save();
 
 				$f3->reroute('/client/list');
