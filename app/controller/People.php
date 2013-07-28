@@ -127,6 +127,8 @@ class People extends Controller
 	    $p = $this->people;	
 		$pid = empty($args['pid'])?'':$args['pid'];
 		$p->erase(array('pID=?', $pid));
+
+		$f3->reroute('/client/list');
 	}
 
 }
