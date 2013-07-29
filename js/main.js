@@ -1,48 +1,33 @@
-// $( "#del" ).on( "click", function() {
-// 	console.log('hi');
-// 	$.mobile.changePage( "/user/logout" , true );
-// });
+$(document).on("pageinit", function() {
+    $("#add").click(function() {
+        var content = "<li><a href='#'>Ferrari</a></li>";
+        $("#set").append( content ).listview('refresh');
+    });
+    // $(".mem").click(function() {
+        
+    //     var $item = $(this);
+    //     // $(this).prop({disabled: true});
+    //     // $(this).removeClass("mem");
+    //     var content = "<li><a href='" + $item.attr('data-href') + "'>" + $item.html() + "</a></li>";
+        
+        
+    //     $("#member").append( content ).listview('refresh');
+    //     // $(this).parent("li").remove();
+    //     $("#all").listview('refresh');
+    // });
 
-// $( "#loadpage" ).on( "click", function() {
-//     $.mobile.loadPage( "../resources/us.html" , true );
-//   });
-
-//   $( "a" ).on( "click", function( event ) {
-//  	console.log("asdfasdf")
-//   // Prevent the usual navigation behavior
-//   event.preventDefault();
- 
-//   // Alter the url according to the anchor's href attribute, and
-//   // store the data-foo attribute information with the url
-//   $.mobile.navigate( this.attr( "href" ), { foo: this.attr( "data-foo" ) });
- 
-//   // Hypothetical content alteration based on the url. E.g, make
-//   // an ajax request for JSON data and render a template into the page.
-//   alterContent( this.attr( "href" ) );
-// });
-
-
-// $( document ).on( "pageinit", function() {
-
-
-// });
-
-(function($, undefined) {
-
-	$(document).on("pageinit", "#main-page", function() {
-		// console.log('page.init')
-		$("a").on("click", function(event) {
-			// console.log('link')
-			// $.mobile.changePage( "/user/login", { transition: "slideup", changeHash: false });
-		});
-	});
-	/* $("#logout").on("click", function() {
-		console.log('logout')
-		$.mobile.loadPage( "/user/login" , true );
-		$.mobile.changePage( "/user/login", { transition: "slideup", changeHash: false });
-		$.mobile.navigate( "/user/login" );
-		// $.mobile.changePage( "/user/logout" , true );
-		// $.mobile.navigate( "/user/login" );
-	}); */
-
-})(jQuery);
+    $("#all li").on( "click", function() {
+        var $item = $(this);
+        var content = "<li><a href='" + $item.attr('data-href') + "'>" + $item.text() + "</a></li>";
+        $("#member").append(content).listview('refresh');
+        $(this).remove();
+        // $(this).css( "display", "none" );
+        $("#all").listview('refresh');
+    });
+    $("#expand").click(function() {
+        $("#set").children(":last").trigger( "expand" );
+    });
+    $("#collapse").click(function() {
+        $("#set").children(":last").trigger( "collapse" );
+    });
+});

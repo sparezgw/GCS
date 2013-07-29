@@ -1,0 +1,64 @@
+<form method="post">
+    <table id="new-card" class="ui-table table-stroke">
+        <caption><h2>{{ @pageTitle }}</h2></caption>
+        <tbody>
+            {{* <tr>
+                <td><a data-role="button" class="ui-icon-nodisc" data-iconshadow="false" data-theme="b" data-icon="plus" data-iconpos="notext"></a></td>
+                <td colspan="3">客户简要资料</td>
+            </tr> *}}
+            <tr>
+                <th>客户简要资料</th>
+                <td><span>姓名：</span><a href="/client/{{ @person.pID }}">{{ @person.name }}</a></td>
+                <td><span>性别：</span><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
+                <td><span>生日：</span>{{ @person.birthday }}</td>
+                <td><span>手机：</span>{{ @person.mobile }}</td>
+            </tr>
+            <tr>
+                <th>家庭成员信息</th>
+                <td colspan="4">
+                    <a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup" data-icon="plus" data-theme="b" data-iconpos="right" data-mini="true">添加成员...</a>
+                    {{*<button type="button" data-icon="gear" data-theme="b" data-iconpos="right" data-mini="true" data-inline="true" id="add">添加</button>
+                    <button type="button" data-icon="plus" data-theme="b" data-iconpos="right" data-mini="true" data-inline="true" id="expand">Expand last</button>
+                    <button type="button" data-icon="minus" data-theme="b" data-iconpos="right" data-mini="true" data-inline="true" id="collapse">Collapse last</button>*}}
+                    
+
+                    <ul data-role="listview" id="member" data-inset="true" data-split-icon="minus" data-split-theme="b">
+                        <repeat group="{{ @family }}" value="{{ @member }}">
+                        <li><a href='/client/{{ @member.pID }}'>{{ @member.name }}</a><a href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a></li>
+                        </repeat>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>关键信息备注</th>
+                <td colspan="4"><textarea cols="40" rows="8" name="memo"></textarea></td>
+            </tr>
+            <tr>
+                <th>日期</th>
+                <td colspan="4" class="ui-grid-b">
+                    <div class="ui-block-a">建卡时间：<input type="date" name="next" value="{{ date("Y-m-d")}}"></div>
+                    <div class="ui-block-b">更新时间：<input type="date" name="next" value="{{ date("Y-m-d")}}"></div>
+                    <div class="ui-block-c">提醒时间：<input type="date" name="next" value="{{ date("Y-m-d")}}"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <a data-role="button" data-inline="true" data-icon="back" data-rel="back">返回</a>
+        <button type="submit" name="add" data-icon="plus" data-theme="b" data-inline="true">添加</button>
+    </div>
+    <div data-role="popup" id="popupMenu" data-theme="d">
+        <ul data-role="listview" id="all" data-filter="true" data-filter-placeholder="客户搜索..." data-inset="true">
+            <li data-role="divider" data-theme="e">选择客户：</li>
+            <repeat group="{{ @people }}" value="{{ @person }}">
+            <li data-icon="plus" data-href="/client/{{ @person.pID }}"><a class="mem">{{ @person.name }}</a></li>
+            </repeat>
+        </ul>
+    </div>
+    <div data-role="popup" id="purchase" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+    <h3>Purchase Album?</h3>
+    <p>Your download will begin immediately on your mobile device when you purchase.</p>
+    <a href="index.html" data-role="button" data-rel="back" data-theme="b" data-icon="check" data-inline="true" data-mini="true">Buy: $10.99</a>
+    <a href="index.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">Cancel</a>
+</div>
+</form>
