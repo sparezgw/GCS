@@ -45,6 +45,7 @@ class People extends Controller
 				$f = empty($f)?'':$fromArray[$f];
 				$f3->set('person.from', $f);
 			}
+			$f3->set('url', '/client/'.$pid);
 			$f3->set('pageTitle', 'Client Details');
 			$f3->set('pageContent', 'people/_show.html');
 		}
@@ -107,7 +108,7 @@ class People extends Controller
 				$p->birthday = ($p->birthday!='')?: NULL;
 				$p->save();
 
-				$f3->reroute('/client/list');
+				$f3->reroute('/client/'.$pid);
 
 			} else {
 
