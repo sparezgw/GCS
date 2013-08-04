@@ -4,8 +4,7 @@
 */
 class Users extends Controller {
 
-	protected
-		$user;
+	protected $user;
 	
 	function __construct() {
 

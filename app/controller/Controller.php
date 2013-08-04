@@ -4,8 +4,7 @@
 */
 class Controller {
 
-	protected
-		$db;
+	protected $db;
 	
 	function __construct($w = true) {
 		$f3=Base::instance();
@@ -15,7 +14,7 @@ class Controller {
 		}
 	}
 
-	function beforeroute($f3) {	
+	function beforeroute($f3) {
 		if ($f3->get('SESSION.UUID') == "") {
 			$f3->reroute('/user/login');
 		}
@@ -31,11 +30,4 @@ class Controller {
 		echo Template::instance()->render('layout.html');
 	}
 	
-	/*function render($page) {
-	    	
-		$class = strtolower(strstr(get_called_class(), 'Controller', true));
-		$page = 'app/view/'.$class.'/_'.$page.'.html';
-		
-		echo View::instance()->render($page);
-	}*/
 }

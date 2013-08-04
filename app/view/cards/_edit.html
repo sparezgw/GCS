@@ -1,0 +1,67 @@
+<form method="post">
+    <table id="edit-card" class="ui-table table-stroke">
+        <caption><h2>{{ (@action=='insert')?'新建卡片':'卡片资料' }}</h2></caption>
+        <tbody>
+            <tr>
+                <th>客户简要资料</th>
+                <td><span>姓名：</span><a href="/client/{{ @person.pID }}">{{ @person.name }}</a></td>
+                <td><span>性别：</span><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
+                <td><span>生日：</span>{{ @person.birthday }}</td>
+                <td><span>手机：</span>{{ @person.mobile }}</td>
+            </tr>
+            <tr>
+                <th>家庭成员信息</th>
+                <td colspan="4">
+                    <a href="#selectClient" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup" data-icon="plus" data-theme="b" data-iconpos="right" data-mini="true">添加成员...</a>
+                    <a href="#newMember" data-rel="popup" data-role="button" data-inline="true" data-position-to="window" data-transition="pop" data-icon="plus" data-iconpos="right" data-mini="true">新增</a>
+
+                    <ul data-role="listview" id="familyMember" data-inset="true" data-split-icon="minus" data-split-theme="b">
+                        <repeat group="{{ @family }}" value="{{ @member }}">
+                        <li data-id="{{ @member.pID }}"><a href='/client/{{ @member.pID }}'>{{ @member.name }}, <check if="{{ @member.gender!==NULL }}">{{ @member.gender?'男':'女' }}</check>, {{ @member.birthday }}, {{ @member.mobile }}</a><a href="javascript:remove({{ @member.pID }})">移除 {{ @member.name }}</a></li>
+                        </repeat>
+                    </ul>
+                    <input type="hidden" name="family" value="" />
+                </td>
+            </tr>
+            <tr>
+                <th>关键信息备注</th>
+                <td colspan="4"><textarea rows="20" name="memo"><check if="{{ isset(@card) }}">{{ @card.memo }}</check></textarea></td>
+            </tr>
+            <tr>
+                <th>日期</th>
+                <td colspan="4" class="ui-grid-b">
+                    <div class="ui-block-a">建卡时间：<input type="date" name="create" value='<check if="{{ isset(@card) }}"><true>{{ substr(@card.create_time,0,10) }}</true><false>{{ date("Y-m-d") }}</false></check>' disabled="disabled"></div>
+                    <div class="ui-block-b">上次更新：<input type="date" name="update" value='<check if="{{ isset(@card) }}">{{ substr(@card.update_time,0,10) }}</check>' disabled="disabled"></div>
+                    <div class="ui-block-c">提醒日期：<input type="date" name="next" value='<check if="{{ isset(@card) }}">{{ substr(@card.next_time,0,10) }}</check>'></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="/client/list" data-role="button" data-inline="true" data-icon="back">返回</a>
+        <button type="submit" name="edit" data-icon="plus" data-theme="b" data-inline="true">{{ (@action=='insert')?'添加':'更新' }}</button>
+    </div>
+</form>
+    <div data-role="popup" id="selectClient" data-theme="d">
+        <ul data-role="listview" id="allClient" data-filter="true" data-filter-placeholder="客户搜索..." data-inset="true">
+            <li data-role="divider" data-theme="e">选择客户：</li>
+            <repeat group="{{ @people }}" value="{{ @per }}">
+            <li data-icon="plus" data-id="{{ @per.pID }}" data-info=""><a>{{ @per.name }}</a></li>
+            </repeat>
+        </ul>
+    </div>
+    <div data-role="popup" id="newMember" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:1em;">
+        <h3>新增家庭成员信息</h3>
+        <form>
+            <input type="text" name="name" data-clear-btn="true" placeholder="姓名">
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <label><input type="radio" name="gender" id="gender-1" value="1">男</label>
+                <label><input type="radio" name="gender" id="gender-2" value="0">女</label>
+            </fieldset>
+            <input type="date" name="birthday" id="birthday" value="" placeholder="生日">
+            <input type="tel" name="mobile" id="mobile" placeholder="手机">
+            <input type="hidden" name="parentID" value="{{ @person.pID }}" />
+        </form>
+        <a data-role="button" data-rel="back" data-theme="b" data-icon="check" data-inline="true" data-mini="true">添加</a>
+        <a data-role="button" data-rel="back" data-inline="true" data-mini="true">取消</a>
+    </div>

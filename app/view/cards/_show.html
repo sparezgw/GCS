@@ -30,16 +30,16 @@
             <tr>
                 <th>日期</th>
                 <td colspan="4" class="ui-grid-b">
-                    <div class="ui-block-a">建卡时间：<input type="date" name="next" value="{{ date("Y-m-d")}}"></div>
-                    <div class="ui-block-b">更新时间：<input type="date" name="next" value="{{ date("Y-m-d")}}"></div>
-                    <div class="ui-block-c">提醒时间：<input type="date" name="next" value="{{ date("Y-m-d")}}"></div>
+                    <div class="ui-block-a">建卡时间：<input type="date" name="create" value="{{ date("Y-m-d") }}" disabled="disabled"></div>
+                    <div class="ui-block-b">更新时间：<input type="date" name="update" value="" disabled="disabled"></div>
+                    <div class="ui-block-c">提醒时间：<input type="date" name="next" value=""></div>
                 </td>
             </tr>
         </tbody>
     </table>
     <div>
         <a data-role="button" data-inline="true" data-icon="back" data-rel="back">返回</a>
-        <button type="submit" name="cardAdd" data-icon="plus" data-theme="b" data-inline="true">添加</button>
+        <button type="submit" name="{{@btnSubmit}}" data-icon="plus" data-theme="b" data-inline="true">添加</button>
     </div>
     <div data-role="popup" id="selectClient" data-theme="d">
         <ul data-role="listview" id="allClient" data-filter="true" data-filter-placeholder="客户搜索..." data-inset="true">

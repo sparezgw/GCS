@@ -242,10 +242,10 @@
 /*
 * New Card
 */
-#new-card th {
+#edit-card th {
     vertical-align: middle;
 }
-#new-card .ui-grid-b > div > div {
+#edit-card .ui-grid-b > div > div {
     width: 60%;
     display: inline-block;
     margin: 0px;

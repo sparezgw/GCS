@@ -4,8 +4,7 @@
 */
 class People extends Controller
 {
-	protected
-		$people;
+	protected $people;
 	
 	function __construct()
 	{
@@ -15,12 +14,21 @@ class People extends Controller
 
 	function all($f3) {
 
+		$f3->set('people',
+			$this->db->exec(
+				'SELECT son.*, IFNULL( father.pID, son.pID ) AS grp
+				FROM people AS father
+				RIGHT JOIN people AS son
+				ON father.pID = son.parentID
+				WHERE son.uID=?
+				ORDER BY grp, parentID, pID',
+				$f3->get('SESSION.UUID')
+			)
+		);
+		$f3->set('url', '/client/list');
 		$f3->set('pageTitle', 'Client List');
 		$f3->set('pageContent', 'people/_list.html');
-		$f3->set('people',
-			$this->db->exec('SELECT * FROM People WHERE uID=?', $f3->get('SESSION.UUID'))
-		);
-
+		
 	}
 
 	function show($f3,$args) {
@@ -57,11 +65,13 @@ class People extends Controller
 		if ($_POST != array()) {
 			$p = $this->people;
 			$p->uID = $f3->get('SESSION.UUID');
-			// $p->parentID = 0;
 			$p->copyFrom('POST');
+			if ($p->birthday=='') $p->birthday = NULL;
 			$p->save();
 
-			$f3->reroute('/client/list');
+			if ($f3->exists('POST.add')) {
+				$f3->reroute('/client/list');
+			}
 
 		} else {
 			
