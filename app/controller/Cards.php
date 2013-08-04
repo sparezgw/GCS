@@ -62,7 +62,7 @@ class Cards extends Controller {
 			$p->load(array('pID=?', $pid));
 			$p->copyto('person'); // show the main client infomation
 			$f3->set('people', // the list of popup menu
-				$p->find('uID='.$uid.' and parentID=0 and pID<>'.$pid)
+				$p->find('uID='.$uid.' and parentID=0 and pID<>'.$pid, array('order'=>'pID'))
 			);
 
 			$c->load(array('pID=?', $pid));
