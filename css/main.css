@@ -221,7 +221,12 @@
 #main-page .ui-table-columntoggle-btn {
     margin-bottom: -50px;
 }
+#back {
+    float: left;
+    margin: 20px auto;
+}
 #operate {
+    float: right;
     margin: 20px auto;
 }
 

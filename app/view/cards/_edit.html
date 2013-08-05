@@ -30,8 +30,8 @@
             <tr>
                 <th>日期</th>
                 <td colspan="4" class="ui-grid-b">
-                    <div class="ui-block-a">建卡时间：<input type="date" name="create" value='<check if="{{ isset(@card) }}"><true>{{ substr(@card.create_time,0,10) }}</true><false>{{ date("Y-m-d") }}</false></check>' disabled="disabled"></div>
-                    <div class="ui-block-b">上次更新：<input type="date" name="update" value='<check if="{{ isset(@card) }}">{{ substr(@card.update_time,0,10) }}</check>' disabled="disabled"></div>
+                    <div class="ui-block-a">建卡时间：<input type="date" name="create" value='<check if="{{ isset(@card) }}"><true>{{ substr(@card.create_time,0,10) }}</true><false>{{ date("Y-m-d") }}</false></check>' readonly="readonly"></div>
+                    <div class="ui-block-b">上次更新：<input type="date" name="update" value='<check if="{{ isset(@card) }}">{{ substr(@card.update_time,0,10) }}</check>' readonly="readonly"></div>
                     <div class="ui-block-c">提醒日期：<input type="date" name="next" value='<check if="{{ isset(@card) }}">{{ substr(@card.next_time,0,10) }}</check>'></div>
                 </td>
             </tr>
