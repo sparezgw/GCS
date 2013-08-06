@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 07 月 31 日 00:01
+-- 生成日期: 2013 年 08 月 06 日 23:11
 -- 服务器版本: 5.5.28
 -- PHP 版本: 5.3.15
 
@@ -32,12 +32,23 @@ CREATE TABLE IF NOT EXISTS `Cards` (
   `uID` tinyint(4) unsigned zerofill NOT NULL,
   `family` varchar(100) DEFAULT NULL,
   `create_time` datetime NOT NULL,
-  `updated_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
   `next_time` datetime DEFAULT NULL,
   `status` tinyint(2) NOT NULL DEFAULT '0',
   `memo` tinytext,
-  PRIMARY KEY (`cID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`cID`),
+  UNIQUE KEY `pID` (`pID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- 转存表中的数据 `Cards`
+--
+
+INSERT INTO `Cards` (`cID`, `pID`, `uID`, `family`, `create_time`, `update_time`, `next_time`, `status`, `memo`) VALUES
+(000004, 000006, 0001, '[4]', '2013-08-03 01:18:39', '2013-08-04 14:28:12', '2013-08-08 14:28:12', 0, 'wangzijian'),
+(000005, 000004, 0001, '[]', '2013-08-04 14:27:48', '2013-08-04 14:28:00', NULL, 0, ''),
+(000006, 000014, 0001, '[15,16,17,18,20,21]', '2013-08-06 17:57:07', '2013-08-06 21:51:52', NULL, 0, 'DCH912'),
+(000007, 000019, 0001, '[]', '2013-08-06 21:52:51', NULL, '2013-08-01 21:52:51', 0, '国家主席');
 
 -- --------------------------------------------------------
 
@@ -78,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `People` (
   `from` tinyint(1) unsigned DEFAULT NULL,
   PRIMARY KEY (`pID`),
   UNIQUE KEY `pID` (`pID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- 转存表中的数据 `People`
@@ -88,9 +99,21 @@ INSERT INTO `People` (`pID`, `uID`, `parentID`, `name`, `gender`, `birthday`, `i
 (000001, 0001, 000000, '赵国维', 1, NULL, '', '', '', '', '', '', 'sparezgw@qq.com', NULL),
 (000002, 0001, 000001, '程谟思', 0, '1985-03-08', NULL, '城市快报', NULL, NULL, '18622212345', NULL, 'chengmosi@foxmail.com', NULL),
 (000003, 0001, 000000, '张三', 1, '1988-08-08', '25万', '中宏保险天津分公司', '高级营业经理', '天津市和平区河北路君隆广场B2座10层', '13802254321', '022-68579990-8681', 'zhaoguowei@foxmail.com', 3),
-(000004, 0001, 000000, '李四', 0, '1992-09-12', 'high', '', '', '', '18900022222', '', 'abc@abc.com', 0),
-(000005, 0001, 000000, '王五', 0, '2000-10-10', '', '', '', '', '', '', '', 1),
-(000006, 0001, 000000, '王自健', 1, NULL, '50万', '东方卫视', '主持人', '上海市浦东新区', '13902066666', '', 'wangzijian@126.com', 3);
+(000004, 0001, 000006, '李四', 0, '2012-06-06', 'high', '', '', '', '18900022222', '', 'abc@abc.com', 0),
+(000006, 0001, 000000, '王自健', 1, NULL, '50万', '东方卫视', '主持人', '上海市浦东新区', '13902066666', '', 'wangzijian@126.com', 3),
+(000011, 0011, 000000, 'abc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'abc@abc.om', NULL),
+(000013, 0013, 000000, '赵国维', 1, '1984-09-09', '', '', '', '', '18622283785', '', 'zhaoguowei@foxmail.com', NULL),
+(000014, 0001, 000000, '大吃货', 0, '1984-09-12', '', '', '', '', '19900067888', '', '', NULL),
+(000015, 0001, 000014, '乔布斯', 1, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL),
+(000016, 0001, 000014, '比尔', NULL, '1972-02-02', '', '', '', '', '', '', '', NULL),
+(000017, 0001, 000014, '罗琳', 0, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL),
+(000018, 0001, 000014, '黄健翔', 1, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, NULL),
+(000019, 0001, 000000, '习近平', 1, '1953-02-02', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL),
+(000020, 0001, 000014, '韩红', 0, '1974-08-23', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL),
+(000021, 0001, 000014, '黄晓明', 1, '1976-04-19', NULL, NULL, NULL, NULL, '18822256789', NULL, NULL, NULL),
+(000022, 0001, 000006, '李祥祥', 1, NULL, '', '', '歌手', '', '27463326', '', '', NULL),
+(000023, 0001, 000006, '郭德纲', 1, '1975-05-20', NULL, NULL, NULL, NULL, '16833355555', NULL, NULL, NULL),
+(000025, 0001, 000006, '谢娜', 0, '1987-09-16', NULL, NULL, NULL, NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -108,14 +131,16 @@ CREATE TABLE IF NOT EXISTS `Users` (
   UNIQUE KEY `uID_2` (`uID`),
   UNIQUE KEY `uname` (`uname`),
   UNIQUE KEY `pID` (`pID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- 转存表中的数据 `Users`
 --
 
 INSERT INTO `Users` (`uID`, `uname`, `passwd`, `pID`) VALUES
-(0001, 'abc', 'abc', 000001);
+(0001, 'abc', 'abc', 000001),
+(0011, 'abc@abc.com', 'asdfasdf', 000011),
+(0013, 'zhaoguowei@foxmail.com', 'colonia', 000013);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
