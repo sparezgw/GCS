@@ -80,8 +80,8 @@ class Users extends Controller {
 
 				$p = $this->db->exec(
 					array(
-						'INSERT INTO people (uID,name,email) VALUES (:uid,:name,:email)',
-						'SELECT pID FROM people WHERE uID=:uid'
+						'INSERT INTO People (uID,name,email) VALUES (:uid,:name,:email)',
+						'SELECT pID FROM People WHERE uID=:uid'
 					),
 					array(
 						array(':uid'=>(int)$uid, ':name'=>$name, ':email'=>$email),
@@ -96,13 +96,8 @@ class Users extends Controller {
 				
 			}
 			$f3->set('msg', $msg);
-			$f3->set('pageTitle', 'Register');
-			$f3->set('pageContent', 'users/_reg.html');
-			
-		} else {
-			$f3->set('pageTitle', 'Register');
-			$f3->set('pageContent', 'users/_reg.html');
 		}
-		
+		$f3->set('pageTitle', 'Register');
+		$f3->set('pageContent', 'users/_reg.html');
 	}
 }

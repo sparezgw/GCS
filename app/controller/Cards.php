@@ -79,7 +79,8 @@ class Cards extends Controller {
 
 	function all($f3, $args) {
 		$type = (empty($args['type']))?'0':$args['type'];
-		$sql = 'SELECT c.*, p.name, p.mobile FROM Cards AS c, People AS p WHERE c.pID=p.pID and p.parentID=0';
+		$sql_uid = ' and c.uID='.$f3->get('SESSION.UUID');
+		$sql = 'SELECT c.*, p.name, p.mobile FROM Cards AS c, People AS p WHERE c.pID=p.pID and p.parentID=0'.$sql_uid;
 		switch ($type) {
 			case '1':
 				$sql = $sql.' and c.status=0 and next_time>CURDATE() ORDER BY next_time DESC';
