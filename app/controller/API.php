@@ -4,12 +4,9 @@
 */
 class API extends Controller {
 
-	protected $user;
-	protected $people;
-	protected $card;
+	protected $user, $people, $card;
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->user = new DB\SQL\Mapper($this->db,'Users');
 		$this->people = new DB\SQL\Mapper($this->db,'People');

@@ -4,11 +4,9 @@
 */
 class Cards extends Controller {
 	
-	protected $people;
-	protected $card;
+	protected $people, $card;
 	
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->people = new DB\SQL\Mapper($this->db,'People');
 		$this->card = new DB\SQL\Mapper($this->db,'Cards');
@@ -44,10 +42,10 @@ class Cards extends Controller {
 			if ($c->dry()) { // New card
 				$c->pID = $pid;
 				$c->uID = $uid;
-				$c->create_time = date("Y-m-d H:i:s");
+				$c->create_time = date($f3->get('time_format'));
 				$c->update_time = NULL;
 			} else {
-				$c->update_time = date("Y-m-d H:i:s");
+				$c->update_time = date($f3->get('time_format'));
 			}
 			$newFamily = array_map ('intval', $f3->split($newFamily));
 			$c->family = json_encode($newFamily);
@@ -79,5 +77,32 @@ class Cards extends Controller {
 		}
 	}
 
+	function all($f3, $args) {
+		$type = (empty($args['type']))?'0':$args['type'];
+		$sql = 'SELECT c.*, p.name, p.mobile FROM Cards AS c, People AS p WHERE c.pID=p.pID and p.parentID=0';
+		switch ($type) {
+			case '1':
+				$sql = $sql.' and c.status=0 and next_time>CURDATE() ORDER BY next_time DESC';
+				break;
 
+			case '2':
+				$sql = $sql.' and c.status=0 and next_time<CURDATE() ORDER BY next_time';
+				break;
+
+			case '3':
+				$sql = $sql.' and c.status=1 ORDER BY cID';
+				break;
+
+			case '0':
+			default:
+				$sql = $sql.' and c.status=0 ORDER BY cID';
+				break;
+		}
+		
+		$url = ($type!='0')?'/card/list/'.$type:'/card/list';
+		$f3->set('cards',$this->db->exec($sql));
+		$f3->set('url', $url);
+		$f3->set('pageTitle', 'Card List');
+		$f3->set('pageContent', 'cards/_list.html');
+	}
 }

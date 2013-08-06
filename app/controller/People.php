@@ -6,8 +6,7 @@ class People extends Controller
 {
 	protected $people;
 	
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->people = new DB\SQL\Mapper($this->db,'People');
 	}

@@ -56,47 +56,11 @@
     /*padding-top: 35px;*/
 }
 
-/* Styling of the page contents */
-.article p {
-    margin: 0 0 1em;
-    line-height: 1.5;
-}
-.article p img {
-    max-width: 100%;
-}
-.article p:first-child {
-    text-align: center;
-}
-.article small {
-    display: block;
-    font-size: 75%;
-    color: #c0c0c0;
-}
-.article p:last-child {
-    text-align: right;
-}
-.article a.ui-btn {
-    margin-right: 2em;
-    -webkit-border-radius: .4em;
-    border-radius: .4em;
-}
-@media all and (min-width:769px) {
-    .article {
-        max-width: 994px;
-        margin: 0 auto;
-        padding-top: 4em;
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
-        -webkit-column-gap: 2em;
-        -moz-column-gap: 2em;
-        column-gap: 2em;
-    }
-    /* Fix for issue with buttons and form elements
-    if CSS columns are used on a page with a panel. */
-    .article a.ui-btn {
-        -webkit-transform: translate3d(0,0,0);
-    }
+/*
+* Footer
+*/
+.ui-footer .ui-btn-inner {
+    font-size: 16px;
 }
 
 
@@ -119,41 +83,44 @@
 
 
 /*
-* Client List
+* Table List: Client list, Card list...
 */
-
+.table-list th,
+.table-list td {
+    vertical-align: middle;
+}
 /* These apply across all breakpoints because they are outside of a media query */
 /* Make the labels light gray all caps across the board */
-.client-list thead th,
-.client-list tbody th .ui-table-cell-label,
-.client-list tbody td .ui-table-cell-label {
+.table-list thead th,
+.table-list tbody th .ui-table-cell-label,
+.table-list tbody td .ui-table-cell-label {
     text-transform: uppercase;
     font-size: .7em;
     color: rgba(0,0,0,0.5);
     font-weight: normal;
 }
 /* White bg, large blue text for rank and title */
-.client-list tbody th {
+.table-list tbody th {
     font-size: 1.2em;
     background-color: #fff;
     color: #77bbff;
     text-align: center;
 }
 /*  Add a bit of extra left padding for the title */
-.client-list tbody td.title {
+.table-list tbody td.title {
     padding-left: .8em;
 }
 /*  Custom stacked styles for mobile sizes */
 /*  Use a max-width media query so we don't have to undo these styles */
 @media (max-width: 40em) {
     /*  Negate the margin between sections */
-    .client-list tbody th {
+    .table-list tbody th {
         margin-top: 0;
         text-align: left;
     }
     /*  White bg, large blue text for rank and title */
-    .client-list tbody th,
-    .client-list tbody td.title {
+    .table-list tbody th,
+    .table-list tbody td.title {
         display: block;
         font-size: 1.2em;
         line-height: 110%;
@@ -165,50 +132,50 @@
         box-shadow: 0 1px 6px rgba(0,0,0,.1);
     }
     /*  Hide labels for rank and title */
-    .client-list tbody th .ui-table-cell-label,
-    .client-list tbody td.title .ui-table-cell-label {
+    .table-list tbody th .ui-table-cell-label,
+    .table-list tbody td.title .ui-table-cell-label {
         display: none;
     }
     /*  Position the title next to the rank, pad to the left */
-    .client-list tbody td.title {
+    .table-list tbody td.title {
         margin-top: -2.1em;
         padding-left: 2.2em;
         border-bottom: 1px solid rgba(0,0,0,.15);
     }
     /*  Make the data bold */
-    .client-list th,
-    .client-list td {
+    .table-list th,
+    .table-list td {
         font-weight: bold;
     }
     /* Make the label elements a percentage width */
-    .client-list td .ui-table-cell-label,
-    .client-list th .ui-table-cell-label {
+    .table-list td .ui-table-cell-label,
+    .table-list th .ui-table-cell-label {
         min-width: 20%;
     }
 }
 /* Media query to show as a standard table at wider widths */
 @media ( min-width: 40em ) {
     /* Show the table header rows */
-    .client-list td,
-    .client-list th,
-    .client-list tbody th,
-    .client-list tbody td,
-    .client-list thead td,
-    .client-list thead th {
+    .table-list td,
+    .table-list th,
+    .table-list tbody th,
+    .table-list tbody td,
+    .table-list thead td,
+    .table-list thead th {
         display: table-cell;
         margin: 0;
     }
     /* Hide the labels in each cell */
-    .client-list td .ui-table-cell-label,
-    .client-list th .ui-table-cell-label {
+    .table-list td .ui-table-cell-label,
+    .table-list th .ui-table-cell-label {
         display: none;
     }
 }
 /* Hack to make IE9 and WP7.5 treat cells like block level elements */
 /* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
 @media ( max-width: 40em ) {
-    .client-list td,
-    .client-list th {
+    .table-list td,
+    .table-list th {
         width: 100%;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -223,11 +190,11 @@
 }
 #back {
     float: left;
-    margin: 20px auto;
+    margin: 10px auto;
 }
 #operate {
     float: right;
-    margin: 20px auto;
+    margin: 10px auto;
 }
 
 

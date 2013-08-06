@@ -1,4 +1,4 @@
-    <table data-role="table" id="client-table" class="client-list table-stroke">
+    <table data-role="table" class="table-list table-stroke">
       <caption><h2>客户列表</h2></caption>
       <thead>
         <tr>
@@ -15,13 +15,13 @@
         <repeat group="{{ @people }}" value="{{ @person }}">
         <tr>
           <th><check if="{{ (int)@person.parentID }}">└</check> {{ @person.pID }}</th>
-          <td class="title"><a href="/client/{{ @person.pID }}">{{ @person.name }}</a></td>
+          <td class="title"><a href="/client/{{ @person.pID }}" data-transition="slideup">{{ @person.name }}</a></td>
           <td><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
           <td>{{ @person.birthday }}</td>
           <td>{{ @person.mobile }}</td>
           <td>{{ @person.email }}</td>
           <td>
-            <a href="/client/{{ @person.pID }}" class="ui-icon-alt" data-role="button" data-icon="bars" data-iconpos="notext" data-inline="true">详情</a>
+            <a href="/client/{{ @person.pID }}" class="ui-icon-alt" data-role="button" data-icon="bars" data-iconpos="notext" data-transition="slideup" data-inline="true">详情</a>
             <a href="/client/edit/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
             <a href="/client/del/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
             <check if="{{ !(int)@person.parentID }}"><a href="/card/p/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">卡片</a></check>

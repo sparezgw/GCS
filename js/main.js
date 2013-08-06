@@ -26,6 +26,16 @@ $(document).on("pageinit", function() {
     });
 });
 
+$(document).on("pageshow", function() {
+    var obj = $.mobile.path.parseUrl(document.URL),
+        path = obj.pathname;
+    if (path.substr(0,10)=='/card/list') {
+        $('[data-role=navbar] a').removeClass("ui-btn-active");
+        var menuLink = $('[data-role=navbar] a[href="'+obj.pathname+'"]');
+        menuLink.addClass("ui-btn-active");
+    }
+});
+
 // remove the item from selected family member list
 function remove(pid) { 
     $familyItem = $("#familyMember li[data-id='" + pid + "']");

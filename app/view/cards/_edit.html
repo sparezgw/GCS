@@ -37,9 +37,14 @@
             </tr>
         </tbody>
     </table>
-    <div>
-        <a href="/client/list" data-role="button" data-inline="true" data-icon="back">返回</a>
+    <div id="back">
+        <a data-role="button" data-inline="true" data-icon="back" data-rel="back">返回</a>
         <button type="submit" name="edit" data-icon="plus" data-theme="b" data-inline="true">{{ (@action=='insert')?'添加':'更新' }}</button>
+    </div>
+    <div id="operate">
+        <check if="{{ @action =='update' }}">
+        <a href="/note/p/{{ @person.pID }}" data-icon="arrow-r" data-role="button" data-theme="a" data-transition="slide" data-inline="true">接触记录</a>
+        </check>
     </div>
 </form>
     <div data-role="popup" id="selectClient" data-theme="d">
