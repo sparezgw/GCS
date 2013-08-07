@@ -14,14 +14,14 @@
 		<tbody>
 			<repeat group="{{ @cards }}" value="{{ @card }}">
 			<tr>
-				<th>{{ @card.cID }}</th>
+				<th>{{ @card.pID }}</th>
 				<td class="title"><a href="/client/{{ @card.pID }}" data-transition="slideup">{{ @card.name }}</a></td>
 				<td>{{ @card.mobile }}</td>
 				<td>{{ substr(@card.create_time,0,10) }}</td>
 				<td>{{ substr(@card.update_time,0,10) }}</td>
 				<td>{{ substr(@card.next_time,0,10) }}</td>
 				<td>
-					<a href="/card/p/{{ @card.pID }}" data-role="button" class="ui-icon-alt" data-icon="info" data-inline="true" data-mini="true">卡片</a>
+					<a href="/card/{{ @card.pID }}" data-role="button" class="ui-icon-alt" data-icon="info" data-inline="true" data-mini="true">卡片</a>
 					<a href="/note/p/{{ @card.pID }}" data-role="button" class="ui-icon-alt" data-icon="arrow-r" data-transition="slide" data-inline="true" data-mini="true">接触记录</a>
 				</td>
 			</tr>

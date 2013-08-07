@@ -143,5 +143,9 @@ class People extends Controller
 		$f3->reroute('/client/list');
 	}
 
+	function search($f3) {
+		$f3->set('pageTitle', 'Search Client');
+		$f3->set('pageContent', 'people/_search.html');
+	}
 }
 

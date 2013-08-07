@@ -1,2 +1,46 @@
-Note
-下个版本即将更新.
+<form method="post">
+	<table data-role="table" class="table-list table-stroke">
+		<caption><h2>客户接触记录</h2></caption>
+		<thead>
+			<tr>
+				<th data-priority="1">序号</th>
+				<th width="16%">时间</th>
+				<th width="8%" data-priority="2">方式</th>
+				<th data-priority="3">内容</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<repeat group="{{ @notes }}" value="{{ @note }}">
+			<tr>
+				<th>{{ @note.nID }}</th>
+				<td class="title">{{ substr(@note.time,0,16) }}</td>
+				<td>{{ @modes[@note.mode-1] }}</td>
+				<td>{{ @note.content }}</td>
+				<td>
+					<a href="#" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
+					<a href="/note/del/{{ @note.nID }}" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
+				</td>
+			</tr>
+			</repeat>
+			<tr>
+				<th>new</th>
+				<td><input type="datetime-local" name="time" value=''></td>
+				<td>
+					<select name="mode">
+					<repeat group="{{ @modes }}" value="{{ @mode }}" counter="{{ @ctr }}">
+						<option value="{{ @ctr }}">{{ @mode }}</option>
+					</repeat>
+					</select>
+				</td>
+				<td><input type="text" name="content" value="" placeholder="简要记录"></td>
+				<td><button type="submit" name="add" data-icon="plus" data-theme="b" data-mini="true" data-inline="true">添加</button></td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+	<div id="back">
+		<a data-role="button" data-inline="true" data-icon="back" data-rel="back">返回</a>
+	</div>
+	<div id="operate">
+	</div>

@@ -48,7 +48,7 @@
     </div>
 </form>
     <div data-role="popup" id="selectClient" data-theme="d">
-        <ul data-role="listview" id="allClient" data-filter="true" data-filter-placeholder="客户搜索..." data-inset="true">
+        <ul data-role="listview" id="allClient" data-filter="true" data-filter-placeholder="客户搜索...(姓名,性别,生日,电话)" data-inset="true">
             <li data-role="divider" data-theme="e">选择客户：</li>
             <repeat group="{{ @people }}" value="{{ @per }}">
             <li data-icon="plus" data-id="{{ @per.pID }}"><a>{{ @per.name }}, <check if="{{ @per.gender!==NULL }}">{{ @per.gender?'男':'女' }}</check>, {{ @per.birthday }}, {{ @per.mobile }}</a></li>

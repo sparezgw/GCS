@@ -53,7 +53,7 @@ class Cards extends Controller {
 			$c->next_time = ($f3->get('POST.next')=='')?NULL:$f3->concat('POST.next', ' '.date("H:i:s"));
 			$c->save();
 
-			$f3->reroute('/card/p/'.$pid);
+			$f3->reroute('/card/'.$pid);
 
 		} else {
 			
@@ -72,7 +72,7 @@ class Cards extends Controller {
 				$f3->set('action', 'update');
 				$f3->set('pageTitle', 'Card '.$pid);
 			}
-			$f3->set('url', '/card/p/'.$pid);
+			$f3->set('url', '/card/'.$pid);
 			$f3->set('pageContent', 'cards/_edit.html');
 		}
 	}
@@ -83,20 +83,20 @@ class Cards extends Controller {
 		$sql = 'SELECT c.*, p.name, p.mobile FROM Cards AS c, People AS p WHERE c.pID=p.pID and p.parentID=0'.$sql_uid;
 		switch ($type) {
 			case '1':
-				$sql = $sql.' and c.status=0 and next_time>CURDATE() ORDER BY next_time DESC';
+				$sql = $sql.' and c.status=0 and next_time>CURDATE() ORDER BY next_time';
 				break;
 
 			case '2':
-				$sql = $sql.' and c.status=0 and next_time<CURDATE() ORDER BY next_time';
+				$sql = $sql.' and c.status=0 and next_time<CURDATE() ORDER BY next_time DESC';
 				break;
 
 			case '3':
-				$sql = $sql.' and c.status=1 ORDER BY cID';
+				$sql = $sql.' and c.status=1 ORDER BY create_time';
 				break;
 
 			case '0':
 			default:
-				$sql = $sql.' and c.status=0 ORDER BY cID';
+				$sql = $sql.' and c.status=0 ORDER BY create_time';
 				break;
 		}
 		
