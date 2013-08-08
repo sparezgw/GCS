@@ -19,12 +19,22 @@
 				<td>{{ @note.content }}</td>
 				<td>
 					<a href="#" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
-					<a href="/note/del/{{ @note.nID }}" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
+					<a href="#popupDelete" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
+					<div data-role="popup" id="popupDelete" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+						<div data-role="header" data-theme="a" class="ui-corner-top">
+							<h1>删除记录？</h1>
+						</div>
+						<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+							<h2 class="ui-title">是否确定删除此条记录？</h2>
+							<a data-role="button" data-inline="true" data-rel="back" data-theme="c">取消</a>
+							<a href="/note/del/{{ @note.nID }}" data-role="button" data-inline="true" data-transition="flow" data-theme="b">删除</a>
+						</div>
+					</div>
 				</td>
 			</tr>
 			</repeat>
 			<tr>
-				<th>new</th>
+				<th>新</th>
 				<td><input type="datetime-local" name="time" value=''></td>
 				<td>
 					<select name="mode">
