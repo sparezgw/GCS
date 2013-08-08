@@ -1,14 +1,12 @@
-      <form class="form-login" method="post">
-        <h2>新用户</h2>
-        <check if="{{ isset(@msg) }}">
-        <div class="alert alert-error">
-          <strong>错误!</strong> {{ @msg }}
-        </div>
-		    </check>
-        <input type="email" name="username" data-clear-btn="true" placeholder="电子邮件">
-        <input type="password" name="password" data-clear-btn="true" placeholder="密码">
-        <input type="password" name="confirm" data-clear-btn="true" placeholder="重复密码">
-        <input type="text" name="name" data-clear-btn="true" placeholder="姓名">
-        <button type="submit" name="reg" data-icon="grid" data-theme="b">注册</button>
-        <span>系统正在内测中，如有重要数据请及时备份。</span>
-      </form>
+	<form class="form-user" method="post">
+		<h2>新用户</h2>
+		<check if="{{ isset(@msg) }}">
+			<div class="alert alert-error"> <strong>错误!</strong>{{ @msg }}</div>
+		</check>
+		<input type="email" name="username" data-clear-btn="true" placeholder="电子邮件">
+		<input type="password" name="password" data-clear-btn="true" placeholder="密码">
+		<input type="password" name="confirm" data-clear-btn="true" placeholder="重复密码">
+		<input type="text" name="name" data-clear-btn="true" placeholder="姓名">
+		<button type="submit" name="reg" data-icon="grid" data-theme="b">注册</button>
+		<span>系统正在内测中，如有重要数据请及时备份。</span>
+	</form>

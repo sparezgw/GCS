@@ -18,6 +18,8 @@ class Users extends Controller {
 		if ($f3->exists('POST.login')) {
 
 			$u = $this->user;
+			$pwd = $f3->get('POST.password');
+			$pwd = crypt($pwd,'gcs@2013');
 
 			$u->load(array('uname=?', $f3->get('POST.username')));
 
@@ -25,7 +27,7 @@ class Users extends Controller {
 
 		    	$msg = "用户名不存在。";
 
-		    else if ($f3->get('POST.password') != $u->passwd) //password is wrong.
+		    else if ($pwd != $u->passwd) //password is wrong.
 
 		    	$msg = "密码输入有误。";
 
@@ -71,7 +73,8 @@ class Users extends Controller {
 				$msg = "用户名已存在。";
 			else {
 				$u->uname = $email;
-				$u->passwd = $f3->get('POST.password');
+				$pwd = $f3->get('POST.password');
+				$u->passwd = crypt($pwd,'gcs@2013');
 				$u->pID = '000000';
 				$u->insert();
 

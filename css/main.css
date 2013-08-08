@@ -63,9 +63,9 @@
 }
 
 /*
-* User Login
+* Form User: Login, Register
 */
-.form-login {
+.form-user {
   max-width: 400px;
   padding: 3px 29px 29px;
   margin: 9px auto 9px;

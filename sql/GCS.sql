@@ -89,11 +89,10 @@ CREATE TABLE IF NOT EXISTS `People` (
 CREATE TABLE IF NOT EXISTS `Users` (
   `uID` tinyint(4) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `uname` varchar(100) NOT NULL,
-  `passwd` varchar(100) NOT NULL,
+  `passwd` varchar(15) NOT NULL,
   `pID` mediumint(6) unsigned zerofill NOT NULL,
   PRIMARY KEY (`uID`),
   UNIQUE KEY `uID` (`uID`),
-  UNIQUE KEY `uID_2` (`uID`),
   UNIQUE KEY `uname` (`uname`),
   UNIQUE KEY `pID` (`pID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
