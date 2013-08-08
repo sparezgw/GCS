@@ -42,11 +42,11 @@
     <div id="back">
         <a data-icon="back" data-role="button" data-inline="true" data-rel="back">返回</a>
         <check if="{{ !(int)@person.parentID }}">
-        <true><a href="/card/p/{{ @person.pID }}" data-icon="info" data-role="button" data-theme="b" data-inline="true">卡片详情</a></true>
-        <false><a href="/card/p/{{ @person.parentID }}" data-icon="info" data-role="button" data-theme="b" data-inline="true">主卡片详情</a></false>
+        <true><a href="/card/{{ @person.pID }}" data-icon="info" data-role="button" data-theme="b" data-inline="true">卡片详情</a></true>
+        <false><a href="/card/{{ @person.parentID }}" data-icon="info" data-role="button" data-theme="b" data-inline="true">主卡片详情</a></false>
         </check>
     </div>
     <div id="operate">
         <a href="/client/edit/{{ @person.pID }}" data-icon="edit" data-role="button" data-theme="b" data-inline="true">编辑</a>
-		<a href="/client/del/{{ @person.pID }}" data-icon="delete" data-role="button" data-theme="e" data-inline="true">删除</a>
+		<a href="/client/del/{{ @person.pID }}" data-icon="delete" data-role="button" data-theme="e" data-inline="true"<check if="{{ @person.pID==@SESSION.PID }}"> class="ui-disabled"</check>>删除</a>
     </div>

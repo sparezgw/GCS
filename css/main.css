@@ -9,6 +9,16 @@
 /*
 * Main page style
 */
+
+#main-page .ui-body-c {
+    font-family: 'Ubuntu','microsoft yahei', sans-serif;
+    /*padding-top: 35px;*/
+}
+
+/*
+* Menu page style - left panel
+*/
+
 #main-page #left-panel.ui-panel {
     width: 15em;
 }
@@ -31,12 +41,6 @@
     transform: translate3d(15em,0,0);
 }
 
-/*
-* Menu page style - left panel
-*/
-#left-panel .ui-panel-inner > .ui-listview { margin-bottom: 0; }
-#left-panel .ui-panel-inner > .ui-listview:last-child { margin-top: -1px; }
-#left-panel .ui-collapsible-set { margin: 0; }
 #left-panel .ui-li-divider { padding: .7em 40px .7em 15px; font-size: 16px; }
 
 /* Reveal menu shadow on top of the list items */
@@ -51,18 +55,12 @@
     box-shadow: -5px 0px 5px rgba(0,0,0,.15);
 }
 
-#main-page .ui-body-c {
-    font-family: 'Ubuntu','microsoft yahei', sans-serif;
-    /*padding-top: 35px;*/
-}
-
 /*
 * Footer
 */
 .ui-footer .ui-btn-inner {
     font-size: 16px;
 }
-
 
 /*
 * User Login

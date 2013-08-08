@@ -24,9 +24,13 @@ class Home extends Controller {
 	function get($f3) {
 	    $f3->set('url', '/home');
 		$f3->set('pageTitle', 'Home');
-		$f3->set('pageContent', 'index.html');
+		$f3->set('pageContent', 'home/index.html');
 	}
 
-
+	function un($f3) {
+	    	
+		$f3->set('pageTitle', '未完成');
+		$f3->set('pageContent', 'home/un.html');
+	}
 }
 
