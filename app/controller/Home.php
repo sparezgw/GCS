@@ -5,7 +5,7 @@
 class Home extends Controller {
 	
 	function __construct() {
-		parent::__construct(false);
+		$f3=Base::instance();
 	}
 
 	function main($f3) {
@@ -22,6 +22,15 @@ class Home extends Controller {
 	}
 
 	function get($f3) {
+		$uid = $f3->get('SESSION.UUID');
+		$pid = $f3->get('SESSION.PID');
+		$db = new DB\SQL($f3->get('db'), $f3->get('db_user'), $f3->get('db_pwd'));
+		$p = new DB\SQL\Mapper($db,'People');
+		$filter = 'uID='.$uid.' and pID<>'.$pid;
+		$f3->set('pNum', $p->count($filter));
+		$c = new DB\SQL\Mapper($db,'Cards');
+		$f3->set('cNum', $c->count($filter));
+
 	    $f3->set('url', '/home');
 		$f3->set('pageTitle', 'Home');
 		$f3->set('pageContent', 'home/index.html');
