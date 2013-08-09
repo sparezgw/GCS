@@ -14,7 +14,7 @@
 		<tbody>
 			<repeat group="{{ @people }}" value="{{ @person }}">
 			<tr>
-				<th><check if="{{ (int)@person.parentID }}">└</check> {{ @person.pID }}</th>
+				<th><check if="{{ (int)@person.parentID }}">└ </check>{{ @person.pID }}</th>
 				<td class="title"><a href="/client/{{ @person.pID }}" data-transition="slideup">{{ @person.name }}</a></td>
 				<td><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
 				<td>{{ @person.birthday }}</td>
@@ -23,22 +23,22 @@
 				<td>
 					<a href="/client/{{ @person.pID }}" class="ui-icon-alt" data-role="button" data-icon="bars" data-iconpos="notext" data-transition="slideup" data-inline="true">详情</a>
 					<a href="/client/edit/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
-					<a href="#popupDelete" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt<check if='{{ @person.pID==@SESSION.PID }}'> ui-disabled</check>" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
+					<a data-id="C{{ @person.pID }}" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt<check if='{{ @person.pID==@SESSION.PID }}'> ui-disabled</check> delete" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
 					<check if="{{ !(int)@person.parentID }}"><a href="/card/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">卡片</a></check>
-					<div data-role="popup" id="popupDelete" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
-						<div data-role="header" data-theme="a" class="ui-corner-top">
-							<h1>删除客户？</h1>
-						</div>
-						<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
-							<h2 class="ui-title">是否确定删除此客户？</h2>
-							<p>删除后将不能恢复。</p>
-							<a data-role="button" data-inline="true" data-rel="back" data-theme="c">取消</a>
-							<a href="/client/del/{{ @person.pID }}" data-role="button" data-inline="true" data-transition="flow" data-theme="b">删除</a>
-						</div>
-					</div>
+
 				</td>
 			</tr>
 			</repeat>
 		</tbody>
 	</table>
-
+	<div data-role="popup" id="popupDeleteC" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+		<div data-role="header" data-theme="a" class="ui-corner-top">
+			<h1>删除客户？</h1>
+		</div>
+		<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+			<h2 class="ui-title">是否确定删除此客户？</h2>
+			<p>删除后将不能恢复。</p>
+			<a data-role="button" data-inline="true" data-rel="back" data-theme="c">取消</a>
+			<a href="#" data-role="button" data-inline="true" data-theme="b">删除</a>
+		</div>
+	</div>

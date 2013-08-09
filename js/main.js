@@ -24,6 +24,16 @@ $(document).on("pageinit", function() {
                 $("#familyMember").append(content).listview('refresh');
         }, "json");
     });
+
+    $("a.delete").click(function() {
+        var $link = $(this),
+            str = $link.attr("data-id"),
+            type = str.substr(0,1),
+            id = str.substr(1);
+        var link = (type=='C')?'/client':'/note';
+        $("#popupDelete"+type+" a:last").attr( "href", link+'/del/'+id );
+        $("#popupDelete"+type).popup("open");
+    });
 });
 
 $(document).on("pageshow", function() {

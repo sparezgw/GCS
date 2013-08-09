@@ -1,4 +1,4 @@
-<form method="post">
+	<form method="post">
 	<table data-role="table" class="table-list table-stroke">
 		<caption><h2>客户接触记录</h2></caption>
 		<thead>
@@ -19,38 +19,36 @@
 				<td>{{ @note.content }}</td>
 				<td>
 					<a href="#" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
-					<a href="#popupDelete" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
-					<div data-role="popup" id="popupDelete" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
-						<div data-role="header" data-theme="a" class="ui-corner-top">
-							<h1>删除记录？</h1>
-						</div>
-						<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
-							<h2 class="ui-title">是否确定删除此条记录？</h2>
-							<a data-role="button" data-inline="true" data-rel="back" data-theme="c">取消</a>
-							<a href="/note/del/{{ @note.nID }}" data-role="button" data-inline="true" data-transition="flow" data-theme="b">删除</a>
-						</div>
-					</div>
+					<a data-id="N{{ @note.nID }}" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt delete" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
 				</td>
 			</tr>
 			</repeat>
 			<tr>
 				<th>新</th>
-				<td><input type="datetime-local" name="time" value=''></td>
+				<td><input type="datetime-local" data-mini="true" name="time" value=''></td>
 				<td>
-					<select name="mode">
+					<select name="mode" data-mini="true">
 					<repeat group="{{ @modes }}" value="{{ @mode }}" counter="{{ @ctr }}">
 						<option value="{{ @ctr }}">{{ @mode }}</option>
 					</repeat>
 					</select>
 				</td>
-				<td><input type="text" name="content" value="" placeholder="简要记录"></td>
+				<td><input type="text" data-mini="true" name="content" value="" placeholder="简要记录"></td>
 				<td><button type="submit" name="add" data-icon="plus" data-theme="b" data-mini="true" data-inline="true">添加</button></td>
 			</tr>
 		</tbody>
 	</table>
-</form>
+	</form>
 	<div id="back">
 		<a data-role="button" data-inline="true" data-icon="back" data-rel="back">返回</a>
 	</div>
-	<div id="operate">
+	<div data-role="popup" id="popupDeleteN" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+		<div data-role="header" data-theme="a" class="ui-corner-top">
+			<h1>删除记录？</h1>
+		</div>
+		<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+			<h2 class="ui-title">是否确定删除此条记录？</h2>
+			<a data-role="button" data-inline="true" data-rel="back" data-theme="c">取消</a>
+			<a href="#" data-role="button" data-inline="true" data-theme="b">删除</a>
+		</div>
 	</div>
