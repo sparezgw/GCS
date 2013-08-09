@@ -1,1 +1,6 @@
-此功能尚未完成，请等待下个版本更新。
+	<h2 class="page-title">客户搜索</h2>	
+	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="可搜索：姓名 性别 生日 手机 邮箱">
+		<repeat group="{{ @people }}" value="{{ @person }}">
+	    <li><a href="/client/{{ @person.pID }}" data-transition="slidedown">{{ @person.name }}<check if="{{ @person.gender!==NULL }}"> {{ @person.gender?'男':'女' }}</check><check if="{{ @person.birthday!=NULL }}"> {{ @person.birthday }}</check><check if="{{ @person.mobile!=NULL }}"> {{ @person.mobile }}</check><check if="{{ @person.email!=NULL }}"> {{ @person.email }}</check></a></li>
+		</repeat>
+	</ul>

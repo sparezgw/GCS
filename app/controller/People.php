@@ -12,16 +12,17 @@ class People extends Controller
 	}
 
 	function all($f3) {
-
+		$uid = $f3->get('SESSION.UUID');
+		$pid = $f3->get('SESSION.PID');
 		$f3->set('people',
 			$this->db->exec(
 				'SELECT son.*, IFNULL( father.pID, son.pID ) AS grp
 				FROM People AS father
 				RIGHT JOIN People AS son
 				ON father.pID = son.parentID
-				WHERE son.uID=?
+				WHERE son.uID=:uid and son.pID<>:pid
 				ORDER BY grp, parentID, pID',
-				$f3->get('SESSION.UUID')
+				array('uid'=>$uid,'pid'=>$pid)
 			)
 		);
 		$f3->set('url', '/client/list');
@@ -135,15 +136,16 @@ class People extends Controller
 	}
 
 	function del($f3, $args) {
-	    
-	    $p = $this->people;	
-		$pid = empty($args['pid'])?'':$args['pid'];
+	    $p = $this->people;
+		$pid = (int)trim($args['pid']);
 		$p->erase(array('pID=?', $pid));
 
 		$f3->reroute('/client/list');
 	}
 
 	function search($f3) {
+		$p = $this->people;
+		$f3->set('people', $p->select('pID,name,gender,birthday,mobile,email', array('uID=?',$f3->get('SESSION.UUID')), array('order'=>'pID')));
 		$f3->set('pageTitle', 'Search Client');
 		$f3->set('pageContent', 'people/_search.html');
 	}
