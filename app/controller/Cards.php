@@ -15,7 +15,7 @@ class Cards extends Controller {
 	function edit($f3, $args) {
 		$c = $this->card;
 		$p = $this->people;
-		$pid = (int)(empty($args['pid']))?'':$args['pid'];
+		$pid = (int)trim($args['pid']);
 		$uid = (int)$f3->get('SESSION.UUID');
 		$family = $p->find(array('parentID=?', $pid));
 		$f3->set('family', $family);
@@ -56,14 +56,10 @@ class Cards extends Controller {
 			$f3->reroute('/card/'.$pid);
 
 		} else {
-			
-			$p->load(array('pID=?', $pid));
-			$p->copyto('person'); // show the main client infomation
-			$f3->set('people', // the list of popup menu
-				$p->find('uID='.$uid.' and parentID=0 and pID<>'.$pid, array('order'=>'pID'))
-			);
-
 			$c->load(array('pID=?', $pid));
+			if ($c->uID != $f3->get('SESSION.UUID')) {
+				$f3->reroute('/card/list');
+			}
 			if ($c->dry()) { // New card 
 				$f3->set('action', 'insert');
 				$f3->set('pageTitle', 'New Card');
@@ -72,6 +68,14 @@ class Cards extends Controller {
 				$f3->set('action', 'update');
 				$f3->set('pageTitle', 'Card '.$pid);
 			}
+
+			$p->load(array('pID=?', $pid));
+			$p->copyto('person'); // show the main client infomation
+			$upid = $f3->get('SESSION.PID');
+			$f3->set('people', // the list of popup menu
+				$p->find('uID='.$uid.' and parentID=0 and pID NOT IN ('.$pid.','.$upid.')', array('order'=>'pID'))
+			);
+
 			$f3->set('url', '/card/'.$pid);
 			$f3->set('pageContent', 'cards/_edit.html');
 		}

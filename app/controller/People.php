@@ -47,6 +47,9 @@ class People extends Controller
 				$f3->error(404);
 				die;
 			} else {
+				if ($p->uID != $f3->get('SESSION.UUID')) {
+					$f3->reroute('/client/list');
+				}
 				$p->copyto('person');
 				$fromArray = array('缘故','转介绍','随缘开发','陌生名单');
 				$f = $f3->get('person.from');
@@ -145,7 +148,7 @@ class People extends Controller
 
 	function search($f3) {
 		$p = $this->people;
-		$f3->set('people', $p->select('pID,name,gender,birthday,mobile,email', array('uID=?',$f3->get('SESSION.UUID')), array('order'=>'pID')));
+		$f3->set('people', $p->select('pID,name,gender,birthday,mobile,email', array('uID=? and pID<>?',$f3->get('SESSION.UUID'),$f3->get('SESSION.PID')), array('order'=>'pID')));
 		$f3->set('pageTitle', 'Search Client');
 		$f3->set('pageContent', 'people/_search.html');
 	}

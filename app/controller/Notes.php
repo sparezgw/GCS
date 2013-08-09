@@ -25,6 +25,11 @@ class Notes extends Controller {
 
 			$f3->reroute('/note/p/'.$pid);
 		} else {
+			$c = new DB\SQL\Mapper($this->db,'Cards');
+			$c->load(array('uID=? and pID=?', $uid, $pid));
+			if ($c->dry()) {
+				$f3->reroute('/card/list');
+			}
 			$f3->set('notes', 
 				$n->find('uID='.$uid.' and pID='.$pid, array('order'=>'time'))
 			);
