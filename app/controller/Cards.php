@@ -47,7 +47,7 @@ class Cards extends Controller {
 			} else {
 				$c->update_time = date($f3->get('time_format'));
 			}
-			$newFamily = array_map ('intval', $f3->split($newFamily));
+			$newFamily = array_map('intval', $f3->split($newFamily));
 			$c->family = json_encode($newFamily);
 			$c->memo = $f3->get('POST.memo');
 			$c->next_time = ($f3->get('POST.next')=='')?NULL:$f3->concat('POST.next', ' '.date("H:i:s"));
@@ -56,10 +56,20 @@ class Cards extends Controller {
 			$f3->reroute('/card/'.$pid);
 
 		} else {
+			$p->load(array('pID=? and uID=? and parentID=0', $pid, $uid));
+			if ($p->dry()) $f3->reroute('/card/list');
+			else $p->copyto('person'); // show the main client infomation
+			$upid = $f3->get('SESSION.PID');
+			$pids = array($pid,$upid);
+			$card_pids = $c->select('pID', array('uID=?', $uid));
+			foreach ($card_pids as $obj)
+				array_push($pids,$obj->pID);
+			$pids = implode(",", $pids);
+			$f3->set('people', // the list of popup menu
+				$p->find('uID='.$uid.' and parentID=0 and pID NOT IN ('.$pids.')', array('order'=>'pID'))
+			);
+
 			$c->load(array('pID=?', $pid));
-			if ($c->uID != $f3->get('SESSION.UUID')) {
-				$f3->reroute('/card/list');
-			}
 			if ($c->dry()) { // New card 
 				$f3->set('action', 'insert');
 				$f3->set('pageTitle', 'New Card');
@@ -68,13 +78,6 @@ class Cards extends Controller {
 				$f3->set('action', 'update');
 				$f3->set('pageTitle', 'Card '.$pid);
 			}
-
-			$p->load(array('pID=?', $pid));
-			$p->copyto('person'); // show the main client infomation
-			$upid = $f3->get('SESSION.PID');
-			$f3->set('people', // the list of popup menu
-				$p->find('uID='.$uid.' and parentID=0 and pID NOT IN ('.$pid.','.$upid.')', array('order'=>'pID'))
-			);
 
 			$f3->set('url', '/card/'.$pid);
 			$f3->set('pageContent', 'cards/_edit.html');
