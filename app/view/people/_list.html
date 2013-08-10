@@ -7,7 +7,6 @@
 				<th data-priority="2">性别</th>
 				<th data-priority="3">生日</th>
 				<th data-priority="4">手机</th>
-				<th data-priority="5">eMail</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -19,12 +18,11 @@
 				<td><check if="{{ @person.gender!==NULL }}">{{ @person.gender?'男':'女' }}</check></td>
 				<td>{{ @person.birthday }}</td>
 				<td>{{ @person.mobile }}</td>
-				<td>{{ @person.email }}</td>
-				<td>
-					<a href="/client/{{ @person.pID }}" class="ui-icon-alt" data-role="button" data-icon="bars" data-iconpos="notext" data-transition="slideup" data-inline="true">详情</a>
-					<a href="/client/edit/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
-					<a data-id="C{{ @person.pID }}" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt<check if='{{ @person.pID==@SESSION.PID }}'> ui-disabled</check> delete" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
-					<check if="{{ !(int)@person.parentID }}"><a href="/card/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="info" data-iconpos="notext" data-iconshadow="false" data-inline="true">卡片</a></check>
+				<td class="op">
+					<a href="/client/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="bars" data-transition="slideup" data-iconshadow="false" data-inline="true" data-mini="true">详情</a>
+					<a href="/client/edit/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconshadow="false" data-inline="true" data-mini="true">修改</a>
+					<a data-id="C{{ @person.pID }}" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt<check if='{{ @person.pID==@SESSION.PID }}'> ui-disabled</check> delete" data-icon="delete" data-iconshadow="false" data-inline="true" data-mini="true">删除</a>
+					<check if="{{ !(int)@person.parentID }}"><a href="/card/{{ @person.pID }}" data-role="button" class="ui-icon-alt" data-icon="info" data-iconshadow="false" data-inline="true" data-mini="true">卡片</a></check>
 
 				</td>
 			</tr>

@@ -1,90 +1,39 @@
-<form class="person-edit" method="post">
-	<div class="ui-grid-b">
-		<h2>更新客户信息</h2>
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="name">姓名:</label>
-			    <input type="text" name="name" id="name" placeholder="姓名" value="{{ @person.name }}">
-			</div>
+	<form method="post">
+	<h2 class="page-title">更新客户信息</h2>
+	<div id="edit-person">
+		<div class="ui-block-a"><lable>姓名：</lable><input type="text" name="name" id="name" placeholder="姓名" value="{{ @person.name }}"></div>
+		<div class="ui-block-b">性别：
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="radio" name="gender" id="gender-1" value="1"<check if="{{ isset(@person.gender)&& @person.gender==1}}"> checked="checked"</check>>
+				<label for="gender-1">男</label>
+				<input type="radio" name="gender" id="gender-2" value="0"<check if="{{ isset(@person.gender)&& @person.gender==0}}"> checked="checked"</check>>
+				<label for="gender-2">女</label>
+			</fieldset>
 		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <fieldset data-role="controlgroup" data-type="horizontal">
-			        <legend>性别:</legend>
-			        <input type="radio" name="gender" id="gender-1" value="1"<check if="{{ isset(@person.gender)&& @person.gender==1}}"> checked="checked"</check>>
-			        <label for="gender-1">男</label>
-			        <input type="radio" name="gender" id="gender-2" value="0"<check if="{{ isset(@person.gender)&& @person.gender==0}}"> checked="checked"</check>>
-			        <label for="gender-2">女</label>
-			    </fieldset>
-			</div>
+		<div class="ui-block-c">生日：<input type="date" name="birthday" id="birthday" value="{{ @person.birthday }}"></div>
+		<div class="ui-block-a">邮箱：<input type="email" name="email" placeholder="邮箱" value="{{ @person.email }}"></div>
+		<div class="ui-block-b">手机：<input type="tel" name="mobile" placeholder="手机" value="{{ @person.mobile }}"></div>
+		<div class="ui-block-c">办公：<input type="text" name="workphone" placeholder="办公电话" value="{{ @person.workphone }}"></div>
+		<div class="ui-block-a">公司：<input type="text" name="company" placeholder="公司" value="{{ @person.company }}"></div>
+		<div class="ui-block-b">职位：<input type="text" name="position" placeholder="职位" value="{{ @person.position }}"></div>
+		<div class="ui-block-c">年收入：<input type="text" name="income" placeholder="年收入" value="{{ @person.income }}"></div>
+		<div class="ui-block-a">地址：<input type="text" name="address" id="address" placeholder="地址" value="{{ @person.address }}"></div>
+		<div class="ui-block-b">来源：
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="radio" name="from" id="from-1" value="0"<check if="{{ isset(@person.from)&& @person.from==0}}"> checked="checked"</check>>
+				<label for="from-1">缘故</label>
+				<input type="radio" name="from" id="from-2" value="1"<check if="{{ isset(@person.from)&& @person.from==1}}"> checked="checked"</check>>
+				<label for="from-2">转介绍</label>
+				<input type="radio" name="from" id="from-3" value="2"<check if="{{ isset(@person.from)&& @person.from==2}}"> checked="checked"</check>>
+				<label for="from-3">随缘开发</label>
+				<input type="radio" name="from" id="from-4" value="3"<check if="{{ isset(@person.from)&& @person.from==3}}"> checked="checked"</check>>
+				<label for="from-4">陌生名单</label>		        
+			</fieldset>
 		</div>
-		<div class="ui-block-c">
-			<div data-role="fieldcontain">
-			    <label for="birthday">生日:</label>
-			    <input type="date" name="birthday" id="birthday" value="{{ @person.birthday }}">
-			</div>
-		</div>
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="email">邮箱:</label>
-			    <input type="email" name="email" id="email" placeholder="邮箱" value="{{ @person.email }}">
-			</div>
-		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <label for="mobile">手机:</label>
-			    <input type="tel" name="mobile" id="mobile" placeholder="手机" value="{{ @person.mobile }}">
-			</div>
-		</div>
-		<div class="ui-block-c">
-			<div data-role="fieldcontain">
-			    <label for="workphone">办公：</label>
-			    <input type="text" name="workphone" id="workphone" placeholder="办公电话" value="{{ @person.workphone }}">
-			</div>
-		</div>
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="company">公司:</label>
-			    <input type="text" name="company" id="company" placeholder="公司" value="{{ @person.company }}">
-			</div>
-		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <label for="position">职位:</label>
-			    <input type="text" name="position" id="position" placeholder="职位" value="{{ @person.position }}">
-			</div>
-		</div>
-		<div class="ui-block-c">
-			<div data-role="fieldcontain">
-			    <label for="income">年收入:</label>
-			    <input type="text" name="income" id="income" placeholder="年收入" value="{{ @person.income }}">
-			</div>
-		</div>
-	</div><!-- /grid-b -->
-	<div class="person-edit ui-grid-a">
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="address">地址:</label>
-			    <input type="text" name="address" id="address" placeholder="地址" value="{{ @person.address }}">
-			</div>
-		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <fieldset data-role="controlgroup" data-type="horizontal">
-			        <legend>来源:</legend>
-			        <input type="radio" name="from" id="from-1" value="0"<check if="{{ isset(@person.from)&& @person.from==0}}"> checked="checked"</check>>
-			        <label for="from-1">缘故</label>
-			        <input type="radio" name="from" id="from-2" value="1"<check if="{{ isset(@person.from)&& @person.from==1}}"> checked="checked"</check>>
-			        <label for="from-2">转介绍</label>
-			        <input type="radio" name="from" id="from-3" value="2"<check if="{{ isset(@person.from)&& @person.from==2}}"> checked="checked"</check>>
-			        <label for="from-3">随缘开发</label>
-			        <input type="radio" name="from" id="from-4" value="3"<check if="{{ isset(@person.from)&& @person.from==3}}"> checked="checked"</check>>
-			        <label for="from-4">陌生名单</label>		        
-			    </fieldset>
-			</div>
-		</div>
-	</div><!-- /grid-a -->
-	<input type="hidden" name="parentID" value="{{ @person.parentID }}" />
-	<a data-icon="back" data-role="button" data-inline="true" data-rel="back">返回</a>
-	<button type="submit" name="update" data-icon="check" data-theme="b" data-inline="true">更新</button>
-</form>
+	</div>
+	<div id="back">
+		<input type="hidden" name="parentID" value="{{ @person.parentID }}" />
+		<a data-icon="back" data-role="button" data-inline="true" data-rel="back">返回</a>
+		<button type="submit" name="update" data-icon="check" data-theme="b" data-inline="true">更新</button>
+	</div>
+	</form>

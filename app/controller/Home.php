@@ -36,6 +36,12 @@ class Home extends Controller {
 		$f3->set('pageContent', 'home/index.html');
 	}
 
+	function help($f3) {
+	    	
+		$f3->set('pageTitle', 'Help');
+		$f3->set('pageContent', 'home/_help.html');
+	}
+
 	function un($f3) {
 	    	
 		$f3->set('pageTitle', '未完成');

@@ -16,7 +16,7 @@ class People extends Controller
 		$pid = $f3->get('SESSION.PID');
 		$f3->set('people',
 			$this->db->exec(
-				'SELECT son.*, IFNULL( father.pID, son.pID ) AS grp
+				'SELECT son.pID, son.parentID, son.name, son.gender, son.birthday, son.mobile, IFNULL( father.pID, son.pID ) AS grp
 				FROM People AS father
 				RIGHT JOIN People AS son
 				ON father.pID = son.parentID

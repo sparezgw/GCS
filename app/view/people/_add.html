@@ -1,89 +1,38 @@
-<form class="person-edit" method="post">
+	<form method="post">
 	<h2 class="page-title">新增客户</h2>
-	<div class="ui-grid-b">
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="name">姓名:</label>
-			    <input type="text" name="name" id="name" placeholder="姓名">
-			</div>
+	<div id="edit-person">
+		<div class="ui-block-a"><lable>姓名：</lable><input type="text" name="name" id="name" placeholder="姓名"></div>
+		<div class="ui-block-b">性别：
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="radio" name="gender" id="gender-1" value="1">
+				<label for="gender-1">男</label>
+				<input type="radio" name="gender" id="gender-2" value="0">
+				<label for="gender-2">女</label>
+			</fieldset>
 		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <fieldset data-role="controlgroup" data-type="horizontal">
-			        <legend>性别:</legend>
-			        <input type="radio" name="gender" id="gender-1" value="1">
-			        <label for="gender-1">男</label>
-			        <input type="radio" name="gender" id="gender-2" value="0">
-			        <label for="gender-2">女</label>
-			    </fieldset>
-			</div>
+		<div class="ui-block-c">生日：<input type="date" name="birthday" id="birthday" value=""></div>
+		<div class="ui-block-a">邮箱：<input type="email" name="email" placeholder="邮箱"></div>
+		<div class="ui-block-b">手机：<input type="tel" name="mobile" placeholder="手机"></div>
+		<div class="ui-block-c">办公：<input type="text" name="workphone" placeholder="办公电话"></div>
+		<div class="ui-block-a">公司：<input type="text" name="company" placeholder="公司"></div>
+		<div class="ui-block-b">职位：<input type="text" name="position" placeholder="职位"></div>
+		<div class="ui-block-c">年收入：<input type="text" name="income" placeholder="年收入"></div>
+		<div class="ui-block-a">地址：<input type="text" name="address" id="address" placeholder="地址"></div>
+		<div class="ui-block-b">来源：
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="radio" name="from" id="from-1" value="0">
+				<label for="from-1">缘故</label>
+				<input type="radio" name="from" id="from-2" value="1">
+				<label for="from-2">转介绍</label>
+				<input type="radio" name="from" id="from-3" value="2">
+				<label for="from-3">随缘开发</label>
+				<input type="radio" name="from" id="from-4" value="3">
+				<label for="from-4">陌生名单</label>		        
+			</fieldset>
 		</div>
-		<div class="ui-block-c">
-			<div data-role="fieldcontain">
-			    <label for="birthday">生日:</label>
-			    <input type="date" name="birthday" id="birthday" value="">
-			</div>
-		</div>
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="email">邮箱:</label>
-			    <input type="email" name="email" id="email" placeholder="邮箱">
-			</div>
-		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <label for="mobile">手机:</label>
-			    <input type="tel" name="mobile" id="mobile" placeholder="手机">
-			</div>
-		</div>
-		<div class="ui-block-c">
-			<div data-role="fieldcontain">
-			    <label for="workphone">办公：</label>
-			    <input type="text" name="workphone" id="workphone" placeholder="办公电话">
-			</div>
-		</div>
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="company">公司:</label>
-			    <input type="text" name="company" id="company" placeholder="公司">
-			</div>
-		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <label for="position">职位:</label>
-			    <input type="text" name="position" id="position" placeholder="职位">
-			</div>
-		</div>
-		<div class="ui-block-c">
-			<div data-role="fieldcontain">
-			    <label for="income">年收入:</label>
-			    <input type="text" name="income" id="income" placeholder="年收入">
-			</div>
-		</div>
-	</div><!-- /grid-b -->
-	<div class="person-edit ui-grid-a">
-		<div class="ui-block-a">
-			<div data-role="fieldcontain">
-			    <label for="address">地址:</label>
-			    <input type="text" name="address" id="address" placeholder="地址">
-			</div>
-		</div>
-		<div class="ui-block-b">
-			<div data-role="fieldcontain">
-			    <fieldset data-role="controlgroup" data-type="horizontal">
-			        <legend>来源:</legend>
-			        <input type="radio" name="from" id="from-1" value="0">
-			        <label for="from-1">缘故</label>
-			        <input type="radio" name="from" id="from-2" value="1">
-			        <label for="from-2">转介绍</label>
-			        <input type="radio" name="from" id="from-3" value="2">
-			        <label for="from-3">随缘开发</label>
-			        <input type="radio" name="from" id="from-4" value="3">
-			        <label for="from-4">陌生名单</label>		        
-			    </fieldset>
-			</div>
-		</div>
-	</div><!-- /grid-a -->
-	<input type="hidden" name="parentID" value="0" />
-	<button type="submit" name="add" data-icon="plus" data-theme="b" data-inline="true">添加</button>
-</form>
+	</div>
+	<div id="back">
+		<input type="hidden" name="parentID" value="0" />
+		<button type="submit" name="add" data-icon="plus" data-theme="b" data-inline="true">添加</button>
+	</div>
+	</form>

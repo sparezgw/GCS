@@ -1,12 +1,4 @@
 /*
-* Common Setup
-*/
-
-/* font config */
-/*@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic&subset=latin,latin-ext);*/
-
-
-/*
 * Main page style
 */
 
@@ -16,7 +8,7 @@
 }
 h2.page-title {
     text-align: left;
-    margin: 0 auto 1.4em;
+    margin: 0 auto 1.2em;
     opacity: .5;
 }
 
@@ -92,8 +84,6 @@ h2.page-title {
 .table-list td {
     vertical-align: middle;
 }
-/* These apply across all breakpoints because they are outside of a media query */
-/* Make the labels light gray all caps across the board */
 .table-list thead th,
 .table-list tbody th .ui-table-cell-label,
 .table-list tbody td .ui-table-cell-label {
@@ -102,26 +92,20 @@ h2.page-title {
     color: rgba(0,0,0,0.5);
     font-weight: normal;
 }
-/* White bg, large blue text for rank and title */
 .table-list tbody th {
     font-size: 1.2em;
     background-color: #fff;
     color: #77bbff;
     text-align: center;
 }
-/*  Add a bit of extra left padding for the title */
 .table-list tbody td.title {
     padding-left: .8em;
 }
-/*  Custom stacked styles for mobile sizes */
-/*  Use a max-width media query so we don't have to undo these styles */
 @media (max-width: 40em) {
-    /*  Negate the margin between sections */
     .table-list tbody th {
         margin-top: 0;
         text-align: left;
     }
-    /*  White bg, large blue text for rank and title */
     .table-list tbody th,
     .table-list tbody td.title {
         display: block;
@@ -134,31 +118,25 @@ h2.page-title {
         -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.1);
         box-shadow: 0 1px 6px rgba(0,0,0,.1);
     }
-    /*  Hide labels for rank and title */
     .table-list tbody th .ui-table-cell-label,
     .table-list tbody td.title .ui-table-cell-label {
         display: none;
     }
-    /*  Position the title next to the rank, pad to the left */
     .table-list tbody td.title {
         margin-top: -2.1em;
         padding-left: 2.2em;
         border-bottom: 1px solid rgba(0,0,0,.15);
     }
-    /*  Make the data bold */
     .table-list th,
     .table-list td {
         font-weight: bold;
     }
-    /* Make the label elements a percentage width */
     .table-list td .ui-table-cell-label,
     .table-list th .ui-table-cell-label {
         min-width: 20%;
     }
 }
-/* Media query to show as a standard table at wider widths */
 @media ( min-width: 40em ) {
-    /* Show the table header rows */
     .table-list td,
     .table-list th,
     .table-list tbody th,
@@ -168,14 +146,16 @@ h2.page-title {
         display: table-cell;
         margin: 0;
     }
-    /* Hide the labels in each cell */
     .table-list td .ui-table-cell-label,
     .table-list th .ui-table-cell-label {
         display: none;
     }
 }
-/* Hack to make IE9 and WP7.5 treat cells like block level elements */
-/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this */
+@media ( min-width: 50em ) {
+    .table-list td.op {
+        width: 35%
+    }
+}
 @media ( max-width: 40em ) {
     .table-list td,
     .table-list th {
@@ -204,16 +184,53 @@ h2.page-title {
 /*
 * Person edit form
 */
-.person-edit .ui-field-contain > label,
-.person-edit legend {
-    font-weight: bold;
-    padding-top: 8px;
-}
-.person-edit .ui-field-contain {
-    padding: .4em 15px;
-    margin: 0 auto;
-}
+#edit-person {
 
+}
+#edit-person div.ui-input-text {
+    width: -moz-calc(70% - .7em);
+    width: -webkit-calc(70% - .7em);
+    width: calc(70% - .7em);
+    display: inline-block;
+    margin: 0;
+    margin-left: .7em
+}
+#edit-person .ui-controlgroup {
+    display: inline-block;
+    margin: 0 .7em;
+}
+#edit-person .ui-block-a,
+#edit-person .ui-block-b,
+#edit-person .ui-block-c {
+    width: 33.3%;
+    height: 3.5em;
+    padding: .5em 0;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+#edit-person > div:last-child,
+#edit-person > div:nth-last-child(2) {
+    width: 50%;
+}
+@media all and (max-width: 48em) {
+    #edit-person .ui-block-a,
+    #edit-person .ui-block-b,
+    #edit-person .ui-block-c {
+        width: 50%;
+    }
+    #edit-person > div:last-child {
+        width: 100%;
+    }
+}
+@media all and (max-width: 40em) {
+    #edit-person .ui-block-a,
+    #edit-person .ui-block-b,
+    #edit-person .ui-block-c {
+        width: 50%;
+    }
+    #edit-person > div:last-child {
+        width: 100%;
+    }
+}
 /*
 * New Card
 */
@@ -225,11 +242,9 @@ h2.page-title {
     display: inline-block;
     margin: 0px;
 }
-
 #selectClient .ui-listview-inset {
     margin-top: 1em;
 }
-
 
 /*
 *  Index Home
@@ -250,7 +265,8 @@ h2.page-title {
 }
 .index-grid .usage {
     width: 10em;
-    padding: 0.5em;
+    padding: .5em;
+    margin: .5em;
     text-align: center;
     font-weight: bold;
     background-image: -webkit-linear-gradient(left,#ddd,#ccc);
