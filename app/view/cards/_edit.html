@@ -42,6 +42,9 @@
         <button type="submit" name="edit" data-icon="plus" data-theme="b" data-inline="true">{{ (@action=='insert')?'添加':'更新' }}</button>
     </div>
     <div id="operate">
+        <check if="{{ isset(@card) }}">
+        <a href="#deal" data-rel="popup" data-role="button" data-theme="b" data-inline="true" data-position-to="window" data-transition="flow">{{ (@card.status)?'标记为未成交':'标记为已成交' }}</a>
+        </check>
         <check if="{{ @action =='update' }}">
         <a href="/note/p/{{ @person.pID }}" data-icon="arrow-r" data-role="button" data-theme="a" data-transition="slide" data-inline="true">接触记录</a>
         </check>
@@ -70,3 +73,16 @@
         <a data-role="button" data-rel="back" data-theme="b" data-icon="check" data-inline="true" data-mini="true">添加</a>
         <a data-role="button" data-rel="back" data-inline="true" data-mini="true">取消</a>
     </div>
+    <check if="{{ isset(@card) }}">
+    <div data-role="popup" id="deal" style="max-width:400px;">
+        <div data-role="header" data-theme="b">
+            <h1>{{ (@card.status)?'确认此客户尚未成交？':'确认此客户已成交？' }}</h1>
+        </div>
+        <div data-role="content" data-theme="d" class="ui-content">
+            <h2 class="ui-title">{{ (@card.status)?'确认此客户尚未成交？':'确认此客户已成交？' }}</h2>
+            <p>{{ (@card.status)?'确认后此客户卡片将会显示在所有客户卡片列表中，成交卡片列表中将不再显示。':'确认后将不能在卡片列表中搜索到此客户卡片，但可以从成交卡片列表中找到。' }}</p>
+            <a data-role="button" data-inline="true" data-rel="back" data-theme="c">取消</a>
+            <a href="/card/deal/{{ @person.pID }}" data-role="button" data-inline="true" data-theme="b">确认</a>
+        </div>
+    </div>
+    </check>

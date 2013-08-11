@@ -98,7 +98,7 @@ class Cards extends Controller {
 				break;
 
 			case '3':
-				$sql = $sql.' and c.status=1 ORDER BY create_time';
+				$sql = $sql.' and c.status=1 ORDER BY update_time DESC';
 				break;
 
 			case '0':
@@ -112,5 +112,14 @@ class Cards extends Controller {
 		$f3->set('url', $url);
 		$f3->set('pageTitle', 'Card List');
 		$f3->set('pageContent', 'cards/_list.html');
+	}
+
+	function deal($f3, $args) {
+		$c = $this->card;
+		$pid = (int)trim($args['pid']);
+		$c->load(array('pID=?', $pid));
+		$c->status = ($c->status)?0:1;
+		$c->save();
+		$f3->reroute('/card/list');
 	}
 }
