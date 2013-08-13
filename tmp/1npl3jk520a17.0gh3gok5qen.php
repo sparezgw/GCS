@@ -1,6 +1,6 @@
 	<form method="post">
 	<table data-role="table" class="table-list table-stroke">
-		<caption><h2>{{ @pageTitle }}</h2></caption>
+		<caption><h2><?php echo $pageTitle; ?></h2></caption>
 		<thead>
 			<tr>
 				<th data-priority="1">序号</th>
@@ -11,26 +11,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			<repeat group="{{ @notes }}" value="{{ @note }}" counter="{{ @ctr }}">
+			<?php $ctr=0; foreach (($notes?:array()) as $note): $ctr++; ?>
 			<tr>
-				<th>{{ @ctr }}</th>
-				<td class="title">{{ substr(@note.time,0,16) }}</td>
-				<td>{{ @modes[@note.mode-1] }}</td>
-				<td>{{ @note.content }}</td>
+				<th><?php echo $ctr; ?></th>
+				<td class="title"><?php echo substr($note['time'],0,16); ?></td>
+				<td><?php echo $modes[$note['mode']-1]; ?></td>
+				<td><?php echo $note['content']; ?></td>
 				<td>
 					<a href="#" data-role="button" class="ui-icon-alt" data-icon="edit" data-iconpos="notext" data-iconshadow="false" data-inline="true">修改</a>
-					<a data-id="N{{ @note.nID }}" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt delete" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
+					<a data-id="N<?php echo $note['nID']; ?>" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt delete" data-icon="delete" data-iconpos="notext" data-iconshadow="false" data-inline="true">删除</a>
 				</td>
 			</tr>
-			</repeat>
+			<?php endforeach; ?>
 			<tr>
 				<th>新</th>
 				<td><input type="datetime-local" data-mini="true" name="time" value=''></td>
 				<td>
 					<select name="mode" data-mini="true">
-					<repeat group="{{ @modes }}" value="{{ @mode }}" counter="{{ @ctr }}">
-						<option value="{{ @ctr }}">{{ @mode }}</option>
-					</repeat>
+					<?php $ctr=0; foreach (($modes?:array()) as $mode): $ctr++; ?>
+						<option value="<?php echo $ctr; ?>"><?php echo $mode; ?></option>
+					<?php endforeach; ?>
 					</select>
 				</td>
 				<td><input type="text" data-mini="true" name="content" value="" placeholder="简要记录"></td>

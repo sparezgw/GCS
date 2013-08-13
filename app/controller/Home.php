@@ -32,13 +32,13 @@ class Home extends Controller {
 		$f3->set('cNum', $c->count($filter));
 
 	    $f3->set('url', '/home');
-		$f3->set('pageTitle', 'Home');
+		$f3->set('pageTitle', '首页');
 		$f3->set('pageContent', 'home/index.html');
 	}
 
 	function help($f3) {
 	    	
-		$f3->set('pageTitle', 'Help');
+		$f3->set('pageTitle', '帮助');
 		$f3->set('pageContent', 'home/_help.html');
 	}
 

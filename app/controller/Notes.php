@@ -35,7 +35,7 @@ class Notes extends Controller {
 			);
 		}
 			
-		$f3->set('pageTitle', 'Note '.$pid);
+		$f3->set('pageTitle', '客户接触记录');
 		$f3->set('pageContent', 'notes/_show.html');
 	}
 

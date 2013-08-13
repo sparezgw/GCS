@@ -40,14 +40,14 @@ class Users extends Controller {
 
 			//if sth. wrong with the form, then print the message.
 			$f3->set('msg', $msg);
-			$f3->set('pageTitle', 'Sign in');
+			$f3->set('pageTitle', '请登录');
 			$f3->set('pageContent', 'users/_login.html');
 
 		} else {
 			
 			//just view the login form.
 			$f3->set('url', '/user/login');
-			$f3->set('pageTitle', 'Sign in');
+			$f3->set('pageTitle', '请登录');
 			$f3->set('pageContent', 'users/_login.html');
 
 		}
@@ -100,7 +100,7 @@ class Users extends Controller {
 			}
 			$f3->set('msg', $msg);
 		}
-		$f3->set('pageTitle', 'Register');
+		$f3->set('pageTitle', '用户注册');
 		$f3->set('pageContent', 'users/_reg.html');
 	}
 }

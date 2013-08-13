@@ -26,7 +26,7 @@ class People extends Controller
 			)
 		);
 		$f3->set('url', '/client/list');
-		$f3->set('pageTitle', 'Client List');
+		$f3->set('pageTitle', '客户列表');
 		$f3->set('pageContent', 'people/_list.html');
 		
 	}
@@ -38,7 +38,7 @@ class People extends Controller
 			$p->load(array('pID=?', $pid));
 			$p->copyto('person');
 			$f3->set('url', '/self/show');
-			$f3->set('pageTitle', 'Info');
+			$f3->set('pageTitle', '个人信息');
 			$f3->set('pageContent', 'people/_info.html');
 		} else {
 			$pid = $args['pid'];
@@ -57,7 +57,7 @@ class People extends Controller
 				$f3->set('person.from', $f);
 			}
 			$f3->set('url', '/client/'.$pid);
-			$f3->set('pageTitle', 'Client Details');
+			$f3->set('pageTitle', '客户详细信息');
 			$f3->set('pageContent', 'people/_show.html');
 		}
 		
@@ -79,7 +79,7 @@ class People extends Controller
 		} else {
 			
 			// just view the login form.
-			$f3->set('pageTitle', 'Add New Client');
+			$f3->set('pageTitle', '新增客户');
 			$f3->set('pageContent', 'people/_add.html');
 
 		}
@@ -105,7 +105,7 @@ class People extends Controller
 			} else {
 
 				$p->copyto('person');
-				$f3->set('pageTitle', 'Info');
+				$f3->set('pageTitle', '更新个人信息');
 				$f3->set('pageContent', 'people/_self_edit.html');
 
 			}
@@ -131,7 +131,7 @@ class People extends Controller
 				} else {
 					$p->copyto('person');
 				}
-				$f3->set('pageTitle', 'Client Info Edit');
+				$f3->set('pageTitle', '更新客户信息');
 				$f3->set('pageContent', 'people/_edit.html');
 
 			}
@@ -149,7 +149,7 @@ class People extends Controller
 	function search($f3) {
 		$p = $this->people;
 		$f3->set('people', $p->select('pID,name,gender,birthday,mobile,email', array('uID=? and pID<>?',$f3->get('SESSION.UUID'),$f3->get('SESSION.PID')), array('order'=>'pID')));
-		$f3->set('pageTitle', 'Search Client');
+		$f3->set('pageTitle', '客户搜索');
 		$f3->set('pageContent', 'people/_search.html');
 	}
 }

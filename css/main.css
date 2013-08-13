@@ -34,8 +34,8 @@ h2.page-title {
     left: 0;
     right: 0;
     -webkit-transform: translate3d(15em,0,0);
-    -moz-transform: translate3d(15em,0,0);
-    transform: translate3d(15em,0,0);
+       -moz-transform: translate3d(15em,0,0);
+            transform: translate3d(15em,0,0);
 }
 
 #left-panel .ui-li-divider { padding: .7em 40px .7em 15px; font-size: 16px; }
@@ -43,13 +43,13 @@ h2.page-title {
 /* Reveal menu shadow on top of the list items */
 #main-page .ui-panel-display-reveal {
     -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
 }
 #main-page .ui-panel-content-wrap-position-left {
     -webkit-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
-    -moz-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
-    box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+       -moz-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+            box-shadow: -5px 0px 5px rgba(0,0,0,.15);
 }
 
 /*
@@ -64,8 +64,8 @@ h2.page-title {
 */
 .form-user {
   max-width: 400px;
-  padding: 3px 29px 29px;
-  margin: 9px auto 9px;
+  padding: 1em 1.6em .8em;
+  margin: 0 auto;
   background-color: #fff;
   border: 1px solid #e5e5e5;
   -webkit-border-radius: 9px;
@@ -74,8 +74,22 @@ h2.page-title {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
           box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  overflow: hidden;
 }
-
+.form-user .ui-block-a,
+.form-user .ui-block-b {
+    width: -webkit-calc(50% - .25em);
+    width:    -moz-calc(50% - .25em);
+    width:         calc(50% - .25em);
+    margin: -.5em auto auto;
+    display: block;
+}
+.form-user .ui-block-a {
+    margin-right: .25em;
+}
+.form-user .ui-block-b {
+    margin-left: .25em;
+}
 
 /*
 * Table List: Client list, Card list...
@@ -244,6 +258,11 @@ h2.page-title {
 }
 #selectClient .ui-listview-inset {
     margin-top: 1em;
+}
+@media all and (max-width: 40em) {
+    #edit-card tr:first-child span {
+        display: none;
+    }
 }
 
 /*

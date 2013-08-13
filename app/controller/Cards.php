@@ -72,11 +72,11 @@ class Cards extends Controller {
 			$c->load(array('pID=?', $pid));
 			if ($c->dry()) { // New card 
 				$f3->set('action', 'insert');
-				$f3->set('pageTitle', 'New Card');
+				$f3->set('pageTitle', '新建卡片');
 			} else { // View&Edit card
 				$c->copyto('card');
 				$f3->set('action', 'update');
-				$f3->set('pageTitle', 'Card '.$pid);
+				$f3->set('pageTitle', '卡片资料');
 			}
 
 			$f3->set('url', '/card/'.$pid);
@@ -110,7 +110,7 @@ class Cards extends Controller {
 		$url = ($type!='0')?'/card/list/'.$type:'/card/list';
 		$f3->set('cards',$this->db->exec($sql));
 		$f3->set('url', $url);
-		$f3->set('pageTitle', 'Card List');
+		$f3->set('pageTitle', '卡片列表');
 		$f3->set('pageContent', 'cards/_list.html');
 	}
 
