@@ -2,12 +2,12 @@
 		<caption><h2>{{ @pageTitle }}</h2></caption>
 		<tbody>
 		<tr>
-			<th></th>
-			<td></td>
 			<th>序号</th>
 			<td>{{ @person.pID }}</td>
 			<th>来源</th>
 			<td>{{ @person.from }}</td>
+			<th>创建时间</th>
+			<td>{{ substr(@person.create_time,0,10) }}</td>
 		</tr>
 		<tr>
 			<th>姓名</th>

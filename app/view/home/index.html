@@ -13,8 +13,8 @@
 			<h3>账户状态</h3>
 			<p>您的账户为：50客户版<span> 最多支持50个客户和50张淘金卡</span></p>
 			<p>当前用量：
-				 <div class="ui-body-b ui-btn-corner-all ui-btn-inline usage" style="background-size: {{ (int)@pNum/50*100 }}%;">客户：{{ @pNum }} / 50</div>
-				 <div class="ui-body-b ui-btn-corner-all ui-btn-inline usage" style="background-size: {{ (int)@cNum/50*100 }}%;">卡片：{{ @cNum }} / 50</div>
+				 <div class="ui-body-b ui-btn-corner-all ui-btn-inline usage" style="background-size: {{ (int)@num.p/50*100 }}%;">客户：{{ @num.p }} / 50</div>
+				 <div class="ui-body-b ui-btn-corner-all ui-btn-inline usage" style="background-size: {{ (int)@num.c/50*100 }}%;">卡片：{{ @num.c }} / 50</div>
 			</p>
 		</div>
 	</div>

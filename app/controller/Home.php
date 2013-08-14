@@ -23,13 +23,9 @@ class Home extends Controller {
 
 	function get($f3) {
 		$uid = $f3->get('SESSION.UUID');
-		$pid = $f3->get('SESSION.PID');
-		$db = new DB\SQL($f3->get('db'), $f3->get('db_user'), $f3->get('db_pwd'));
-		$p = new DB\SQL\Mapper($db,'People');
-		$filter = 'uID='.$uid.' and pID<>'.$pid;
-		$f3->set('pNum', $p->count($filter));
-		$c = new DB\SQL\Mapper($db,'Cards');
-		$f3->set('cNum', $c->count($filter));
+		$api = new API;
+		$f3->set('num', $api->usage($f3, $uid));
+		$f3->set('act', $api->activity($f3, $uid));
 
 	    $f3->set('url', '/home');
 		$f3->set('pageTitle', '首页');
