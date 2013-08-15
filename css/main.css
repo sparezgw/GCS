@@ -351,37 +351,37 @@ h2.page-title {
 	text-align: center;
 	vertical-align: middle;
 }
-@media screen and (max-width: 42em) {
-	/* Style the column `name` in a dark bar */
-	.team-activity th:first-child {
-		color: #fff;
-		background-color: #555;
-		font-size: 1.2em;
-		padding: .3em .6em .3em .6em;
-		-webkit-text-shadow: none;
-		   -moz-text-shadow: none;
-				text-shadow: none;
-	}
-	/* Hide the label of column `name` */
-	.team-activity th:first-child .ui-table-cell-label {
-		display: none;
-	}
-	.team-activity td .ui-table-cell-label {
-		text-align: left;
-		width: 45%;
-	}
-	/* Make the grouped header labels green */
-	.ui-table-reflow th .ui-table-cell-label-top,
-	.ui-table-reflow td .ui-table-cell-label-top {
-		font-weight: bold;
-		color: #319B47;
-		font-size: 1.1em;
-		width: 100%;
-		text-align: center;
-	}
 
+/* Style the column `name` in a dark bar */
+.team-activity tbody th,
+.table-stripe tbody tr:nth-child(odd) th {
+	color: #fff;
+	background-color: #555;
+	font-size: 1.2em;
+	padding: .3em .6em .3em .6em;
+	-webkit-text-shadow: none;
+	   -moz-text-shadow: none;
+			text-shadow: none;
 }
-@media screen and (min-width: 48em) {
+/* Hide the label of column `name` */
+.team-activity th:first-child .ui-table-cell-label {
+	display: none;
+}
+.team-activity td .ui-table-cell-label {
+	text-align: left;
+	width: 45%;
+}
+/* Make the grouped header labels green */
+.ui-table-reflow th .ui-table-cell-label-top,
+.ui-table-reflow td .ui-table-cell-label-top {
+	font-weight: bold;
+	color: #319B47;
+	font-size: 1.1em;
+	width: 100%;
+	text-align: center;
+}
+
+@media all and (min-width: 48em) {
 	.team-activity td,
 	.team-activity th,
 	.team-activity tbody th,

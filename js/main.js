@@ -26,12 +26,12 @@ $(document).on("pageinit", function() {
     });
 
     $("a.delete").click(function() {
+        var dir = {'C':'/client','N':'/note','T':'/team/member'};
         var $link = $(this),
             str = $link.attr("data-id"),
             type = str.substr(0,1),
             id = str.substr(1);
-        var link = (type=='C')?'/client':'/note';
-        $("#popupDelete"+type+" a:last").attr( "href", link+'/del/'+id );
+        $("#popupDelete"+type+" a:last").attr( "href", dir[type]+'/del/'+id );
         $("#popupDelete"+type).popup("open");
     });
 });

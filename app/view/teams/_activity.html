@@ -1,5 +1,5 @@
-<table data-role="table" data-mode="reflow" class="team-activity table-stripe">
-	<caption><h2>{{ @pageTitle }}</h2></caption>
+<table data-role="table" data-mode="reflow" class="table-stripe team-activity">
+	<caption><h2>{{ @pageTitle }}：<check if="{{ isset(@team) }}"><true>{{@team.name}}</true><false>全部</false></check></h2></caption>
 	<thead>
 		<tr class="th-groups">
 			<th></th>
@@ -20,12 +20,12 @@
 		<repeat group="{{ @members }}" value="{{ @member }}">
 		<tr>
 			<th>{{ @member.name }}</th>
-			<td>{{ @member.act.yesterday.card }}</td>
-			<td>{{ @member.act.yesterday.note }}</td>
-			<td>{{ @member.act.yesterday.people }}</td>
-			<td>{{ @member.act.today.card }}</td>
-			<td>{{ @member.act.today.note }}</td>
-			<td>{{ @member.act.today.people }}</td>
+			<td>{{ @member.activity.yesterday.card }}</td>
+			<td>{{ @member.activity.yesterday.note }}</td>
+			<td>{{ @member.activity.yesterday.people }}</td>
+			<td>{{ @member.activity.today.card }}</td>
+			<td>{{ @member.activity.today.note }}</td>
+			<td>{{ @member.activity.today.people }}</td>
 		</tr>
 		</repeat>
 	</tbody>

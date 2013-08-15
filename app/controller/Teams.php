@@ -6,28 +6,46 @@ class Teams extends Controller {
 	
 	function __construct() {
 		parent::__construct();
+		$this->team = new DB\SQL\Mapper($this->db,'Teams');
 	}
 
-	function view($f3) {
+	function beforeroute($f3) {
+		parent::__construct();
+		if (!$f3->exists('SESSION.TEAM'))
+			$f3->reroute('/home');
+	}
+
+	protected function info($f3) {
+		$t = $this->team;
 		$uid = $f3->get('SESSION.UUID');
-		$api = new API;
-		$act = $api->activity($f3, $uid);
-		$f3->set('activity', $act);
-		$f3->set('pageTitle', '活动量检视');
-		$f3->set('pageContent', 'teams/_view.html');
+		$tid = $f3->get('SESSION.TEAM');
+		$sql = 'SELECT u.uID, u.uname, p.name From Users AS u LEFT JOIN People AS p ON u.pID = p.pID';
+		if ($tid && $tid != 255) { // Super Administrator
+			$t->load(array('tID=?', $tid));
+			if($t->dry()) {
+				$f3->error(404);
+				die;
+			} else $t->copyTo('team');
+			// $uids = substr($team_uids, 1, strlen($team_uids) - 2);
+			$uids = implode(",", json_decode($t->members));
+			if (!strlen(trim($uids))) {
+				$uids = $uid;
+				$sql .= ' WHERE u.uID IN ('.$uids.')';
+			} else {
+				$uids = $uid.','.trim($uids);
+				$sql .= ' WHERE u.uID IN ('.$uids.')';
+				$sql .= ' ORDER BY instr("'.$uids.',", u.uID+",")';
+			}
+		}
+		return $this->db->exec($sql);
 	}
 
 	function activity($f3) {
-		//table-stroke
-		$members = array();
-		$team_uids = '[1,11,13,14]';
-		$uids = substr($team_uids, 1, strlen($team_uids) - 2);
-		// $uids = implode(",", json_decode($team_uids));
-		$sql = 'SELECT u.uID, p.name From Users AS u LEFT JOIN People AS p ON u.pID = p.pID WHERE u.uID IN ('.$uids.')';
-		$users = $this->db->exec($sql);
+		$users = $this->info($f3);
 		$api = new API;
+		$members = array();
 		foreach ($users as $user) {
-			$arr = array('act' => $api->activity($f3, $user['uID']));
+			$arr = array('activity' => $api->activity($f3, $user['uID']));
 			$result = array_merge($user, $arr);
 			array_push($members, $result);
 		}
@@ -37,8 +55,51 @@ class Teams extends Controller {
 	}
 
 	function member($f3) {
-			
-		# code...
+		if ($f3->exists('POST.add')) {
+			$new = trim($f3->get('POST.uname'));
+			if ($new) {
+				$u = new DB\SQL\Mapper($this->db,'Users');
+				$u->load(array('uname=?', $new));
+				if (!$u->dry()) {
+					$newID = $u->uID; // get uID of the new member
+					if ($newID != $f3->get('SESSION.UUID')) {
+						$t = $this->team;
+						$tid = $f3->get('SESSION.TEAM');
+						$t->load(array('tID=?', $tid));// load the original members list
+						$uids = json_decode($t->members);
+						array_push($uids, $newID);// push the new into list
+						$t->members = json_encode($uids);
+						$t->save();
+					}
+				}
+			}
+		}
+		$members = $this->info($f3);
+		$f3->set('members', $members);
+		$f3->set('url', '/team/member');
+		$f3->set('pageTitle', '团队人员名单');
+		$f3->set('pageContent', 'teams/_member.html');
+	}
+
+	function remove($f3, $args) {
+		$t = $this->team;
+		$uid = (int)trim($args['uid']);
+		$tid = $f3->get('SESSION.TEAM');
+		if ($tid && $tid != 255) {
+			$t->load(array('tID=?', $tid));
+			if($t->dry()) {
+				$f3->error(404);
+				die;
+			}
+			$uids = json_decode($t->members);
+			$key = array_search($uid, $uids);
+			if ($key !== FALSE) { // found the position of uID
+				unset($uids[$key]);
+			}
+			$t->members = '['.implode(",", $uids).']';
+			$t->save();
+		}
+		$f3->reroute('/team/member');
 	}
 }
 ?>

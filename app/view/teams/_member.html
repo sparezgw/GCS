@@ -1,0 +1,46 @@
+	<form method="post">
+	<table data-role="table" class="table-list table-stroke">
+		<caption><h2>{{ @pageTitle }}：<check if="{{ isset(@team) }}"><true>{{@team.name}}</true><false>全部</false></check></h2></caption>
+		<thead>
+			<tr>
+				<th data-priority="1">序号</th>
+				<th width="30%">姓名</th>
+				<th data-priority="2">帐号</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<repeat group="{{ @members }}" value="{{ @member }}" counter="{{ @ctr }}">
+			<tr>
+				<th>{{ @ctr - 1 }}</th>
+				<td class="title">{{ @member.name }}</td>
+				<td>{{ @member.uname }}</td>
+				<td>
+					<a data-id="T{{@member.uID}}" data-rel="popup" data-position-to="window" data-role="button" class="ui-icon-alt<check if='{{ @ctr==1 }}'> ui-disabled</check> delete" data-icon="delete" data-iconshadow="false" data-inline="true" data-mini="true">移除</a>
+				</td>
+			</tr>
+			</repeat>
+			<check if="{{ @SESSION.TEAM!=255 }}">
+			<tr>
+				<th>新</th>
+				<td>【团队新成员】</td>
+				<td><input type="email" data-mini="true" name="uname" value="" placeholder="登录邮箱"></td>
+				<td><button type="submit" name="add" data-icon="plus" data-theme="b" data-mini="true" data-inline="true">添加</button></td>
+			</tr>
+			</check>
+		</tbody>
+	</table>
+	</form>
+	<div id="back">
+		<a data-role="button" data-inline="true" data-icon="back" data-rel="back">返回</a>
+	</div>
+	<div data-role="popup" id="popupDeleteT" data-overlay-theme="a" data-theme="c" data-dismissible="false" style="max-width:400px;" class="ui-corner-all">
+		<div data-role="header" data-theme="a" class="ui-corner-top">
+			<h1>移除成员？</h1>
+		</div>
+		<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
+			<h2 class="ui-title">是否确定从团队中移除此人？</h2>
+			<a data-role="button" data-inline="true" data-rel="back" data-theme="c">取消</a>
+			<a href="#" data-role="button" data-inline="true" data-theme="b">删除</a>
+		</div>
+	</div>

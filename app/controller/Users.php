@@ -23,18 +23,19 @@ class Users extends Controller {
 
 			$u->load(array('uname=?', $f3->get('POST.username')));
 
-		    if(empty($u->uID)) //username does not exist.
+			if(empty($u->uID)) //username does not exist.
 
-		    	$msg = "用户名不存在。";
+				$msg = "用户名不存在。";
 
-		    else if ($pwd != $u->passwd) //password is wrong.
+			else if ($pwd != $u->passwd) //password is wrong.
 
-		    	$msg = "密码输入有误。";
+				$msg = "密码输入有误。";
 
-		    else { //both username and password are right, and goto main page.
+			else { //both username and password are right, and goto main page.
 
 				$f3->set('SESSION.UUID', $u->uID);
 				$f3->set('SESSION.PID', $u->pID);
+				if ($u->tID) $f3->set('SESSION.TEAM', $u->tID);
 				$f3->reroute('/home');
 			}
 
@@ -55,13 +56,13 @@ class Users extends Controller {
 	}
 
 	function logout($f3) {
-	    	
+			
 		$f3->clear('SESSION');
 		$f3->reroute('/user/login');
 	}
 
 	function reg($f3) {
-	    	
+			
 		if ($f3->exists('POST.reg')) {
 			$u = $this->user;
 			$email = $f3->get('POST.username');
