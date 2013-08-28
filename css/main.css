@@ -295,7 +295,8 @@ h2.page-title {
 .index-grid .ui-block-a,
 .index-grid .ui-block-b,
 .index-grid .ui-block-c,
-.index-grid .ui-block-d {
+.index-grid .ui-block-d,
+.index-grid .ui-block-e {
 	width: 100%;
 	float: none;
 }
@@ -311,13 +312,12 @@ h2.page-title {
 	.index-grid .ui-body {
 		min-height: 14em;
 	}
-	.index-grid .ui-block-c,
-	.index-grid .ui-block-d {
+	.index-grid .ui-block-d,
+	.index-grid .ui-block-e {
 		float: left;
 		width: 50%;
 	}
-
-	.index-grid > div:last-child .ui-body {
+	.index-grid .ui-block-e .ui-body {
 		border-left-width: 0;
 	}
 }
@@ -326,15 +326,21 @@ h2.page-title {
 	.index-grid .ui-body {
 		min-height: 16em;
 	}
-	.index-grid .ui-block-b {
+	.index-grid .ui-block-a,
+	.index-grid .ui-block-b,
+	.index-grid .ui-block-c {
 		float: left;
 		width: 50%;
 	}
-	.index-grid .ui-block-c,
-	.index-grid .ui-block-d {
+	.index-grid .ui-block-d,
+	.index-grid .ui-block-e {
 		width: 25%;
 	}
-	.index-grid > div + div + div .ui-body {
+	.index-grid .ui-block-b .ui-body {
+		border-top-width: 1px;
+	}
+	.index-grid .ui-block-b .ui-body,
+	.index-grid .ui-block-d .ui-body {
 		border-left-width: 0;
 	}
 }

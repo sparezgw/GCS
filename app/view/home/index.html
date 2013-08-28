@@ -10,6 +10,30 @@
 	</div>
 	<div class="ui-block-b">
 		<div class="ui-body ui-body-d">
+			<table data-role="table" data-mode="reflow" class="table-stroke team-activity">
+				<h3>活动量检视</h3>
+				<thead>
+					<tr><th></th><th>新卡片</th><th>新记录</th><th>新客户</th></tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>昨日</th>
+						<td>{{ @act.yesterday.card }}</td>
+						<td>{{ @act.yesterday.note }}</td>
+						<td>{{ @act.yesterday.note }}</td>
+					</tr>
+					<tr>
+						<th>今日</th>
+						<td>{{ @act.today.card }}</td>
+						<td>{{ @act.today.note }}</td>
+						<td>{{ @act.today.note }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="ui-block-c">
+		<div class="ui-body ui-body-d">
 			<h3>账户状态</h3>
 			<p>您的账户为：50客户版<span> 最多支持50个客户和50张淘金卡</span></p>
 			<p>当前用量：
@@ -18,7 +42,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="ui-block-c">
+	<div class="ui-block-d">
 		<div class="ui-body ui-body-d">
 			<h3>常用功能</h3>
 			<ol data-role="listview" data-theme="d" data-inset="true">
@@ -28,7 +52,7 @@
 			</ol>
 		</div>
 	</div>
-	<div class="ui-block-d">
+	<div class="ui-block-e">
 		<div class="ui-body ui-body-d">
 			<h3>系统信息</h3>
 			<p>当前版本：{{ @version }}</p>
