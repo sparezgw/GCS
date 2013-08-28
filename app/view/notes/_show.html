@@ -14,7 +14,7 @@
 			<repeat group="{{ @notes }}" value="{{ @note }}" counter="{{ @ctr }}">
 			<tr>
 				<th>{{ @ctr }}</th>
-				<td class="title">{{ substr(@note.time,0,16) }}</td>
+				<td class="title">{{ substr(@note.create_time,0,16) }}</td>
 				<td>{{ @modes[@note.mode-1] }}</td>
 				<td>{{ @note.content }}</td>
 				<td>
@@ -25,7 +25,7 @@
 			</repeat>
 			<tr>
 				<th>新</th>
-				<td><input type="datetime-local" data-mini="true" name="time" value=''></td>
+				<td><input type="datetime-local" data-mini="true" name="create_time" value=''></td>
 				<td>
 					<select name="mode" data-mini="true">
 					<repeat group="{{ @modes }}" value="{{ @mode }}" counter="{{ @ctr }}">

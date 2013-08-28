@@ -31,7 +31,7 @@ class Notes extends Controller {
 				$f3->reroute('/card/list');
 			}
 			$f3->set('notes', 
-				$n->find('uID='.$uid.' and pID='.$pid, array('order'=>'time'))
+				$n->find('uID='.$uid.' and pID='.$pid, array('order'=>'create_time'))
 			);
 		}
 			

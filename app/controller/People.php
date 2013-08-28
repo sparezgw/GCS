@@ -75,9 +75,7 @@ class People extends Controller
 			if ($f3->exists('POST.add')) {
 				$f3->reroute('/client/list');
 			}
-
 		} else {
-			
 			// just view the login form.
 			$f3->set('pageTitle', '新增客户');
 			$f3->set('pageContent', 'people/_add.html');
